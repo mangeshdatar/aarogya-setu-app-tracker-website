@@ -1,0 +1,48 @@
+.loginContainer{
+    text-align: center;
+    justify-content: center;
+}
+.margin10{
+    margin-top: 21%;
+}
+
+.signInLable{
+    padding: 0px;
+    margin: 0px;
+    font-size: 22px;
+}
+.MuiInputBase-input{
+    height: 7px !important;
+}
+.MuiInputLabel-formControl{
+    top: -6px !important;
+}
+
+.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: white !important;
+}
+.MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+    border-color: grey !important;
+}
+.MuiInputBase-root{
+    color: white !important;
+}
+.MuiInputLabel-outlined{
+    color: white !important;
+}
+.MuiFormLabel-root.Mui-focused{
+    color: white !important;
+}
+.inputContainer{
+    padding: 10px 0;
+    width: 41%;
+    min-height: 20px;
+    text-align: center;
+    justify-content: center;
+    margin: auto;
+}
+.MuiButton-containedPrimary {
+    color: rgb(0, 0, 0) !important;
+    background-color: #90caf9 !important;
+    text-transform: capitalize;
+}
