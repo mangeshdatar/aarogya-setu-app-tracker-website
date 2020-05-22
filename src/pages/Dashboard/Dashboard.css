@@ -1,0 +1,11 @@
+.tableContainer{
+    width: 71%;
+    margin: auto;
+}
+.addIcon{
+    text-align: end;
+}
+.MuiFab-primary {
+    height: 20px !important;
+    width: 38px !important;
+}

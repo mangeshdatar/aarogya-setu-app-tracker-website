@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import LockOpenSharpIcon from '@material-ui/icons/LockOpenSharp';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import './LoginPage.css'
+import './LoginPage.css';
+import { db } from '../../services/firebase';
+import Alert from '@material-ui/lab/Alert';
+
 export default class LoginPage extends Component {
     constructor (props) {
         super(props);
@@ -10,12 +13,31 @@ export default class LoginPage extends Component {
         this.state = {
             input: '',
             password: '',
-            button:true
+            button: true,
+            invalid:false
         }
     }
     contactSubmit(form) {
+        console.log("-----------",this.props.history)
         form.preventDefault();
-        this.props.history.push('/dashboard')
+        db.collection("admin")
+        .get()
+        .then(querySnapshot => {
+          const data = querySnapshot.docs.map(doc => doc.data());
+            console.log(data[0].username); 
+            if (this.state.input == data[0].username && this.state.password == data[0].password) {
+                    this.props.history.push('/dashboard')
+            } else {
+                this.setState({
+                    invalid: true
+                });
+                setTimeout(() => {
+                    this.setState({
+                        invalid: false
+                    });
+                },2000)
+            }
+        });
     }
 
     inputFiled(event, field) {
@@ -37,8 +59,10 @@ export default class LoginPage extends Component {
             })
         } else {
             this.setState({
-                button : true
-            }) 
+                button: true
+            });
+
+          
         }
     }
     render() {
@@ -58,10 +82,17 @@ export default class LoginPage extends Component {
                     <div className="inputContainer">
                     <Button type="submit" fullWidth variant="contained" color="primary" disabled={this.state.button}>
                         Sign in
-
+    
                         </Button>
+                       
                         </div>
                 </form>
+                <div className="invalidUser">
+                    {this.state.invalid ?
+
+                        <Alert severity="error">Invalid User</Alert>: null
+                }
+                </div> 
             </div>
         )
     }
