@@ -58,7 +58,7 @@ export default class Cards extends Component {
                             />
                         </Typography>
                         <Typography color="textPrimary">{new Date().toDateString()}</Typography>
-                        <Typography variant="body2">Active Employee on Aarogya Setu</Typography>
+                        <Typography variant="body2">Total Employee </Typography>
                     </CardContent>
                 </Grid>
                 <Grid item component={Card} xs={12} md={3} className={cx(styles.card, styles.recovered)}>
