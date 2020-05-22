@@ -3,7 +3,7 @@
     justify-content: center;
 }
 .margin10{
-    margin-top: 21%;
+    margin-top: 18%;
 }
 
 .signInLable{
@@ -35,7 +35,7 @@
 }
 .inputContainer{
     padding: 10px 0;
-    width: 41%;
+    width: 31%;
     min-height: 20px;
     text-align: center;
     justify-content: center;
@@ -45,4 +45,16 @@
     color: rgb(0, 0, 0) !important;
     background-color: #90caf9 !important;
     text-transform: capitalize;
+}
+
+.invalidUser{
+    width: 19%;
+    margin: 30px auto;
+}
+.MuiAlert-root{
+    padding: 0 !important;
+}
+
+.MuiAlert-icon{
+    padding: 7px 7px !important;
 }

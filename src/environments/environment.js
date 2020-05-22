@@ -6,4 +6,4 @@ export const config = {
     storageBucket: '',
     messagingSenderId: '',
     appId: ''
-};
+  };
