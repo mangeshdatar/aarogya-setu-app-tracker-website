@@ -1,11 +1,27 @@
 .loginContainer{
     text-align: center;
     justify-content: center;
-}
-.margin10{
-    margin-top: 18%;
+    background: #009fd5;
+    width: 100%;
+    height: 100vh;
+    top: 0;
 }
 
+.lableContainer{
+    text-align: center;
+    justify-content: center;
+    background: #009fd5;
+    color: black;
+}
+.formContainer{
+   
+    border-radius: 6px;
+    margin: auto;
+    margin-top: 5%;
+    background-color: #ffffff;
+    width: 30%;
+    height: 40%;
+}
 .signInLable{
     padding: 0px;
     margin: 0px;
@@ -19,31 +35,32 @@
 }
 
 .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
-    border-color: white !important;
+    border-color: #009fd5 !important;
 }
 .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
-    border-color: grey !important;
+    border-color: #009fd5 !important;
 }
 .MuiInputBase-root{
-    color: white !important;
+    color: #009fd5 !important;
 }
 .MuiInputLabel-outlined{
-    color: white !important;
+    color: #009fd5 !important;
 }
 .MuiFormLabel-root.Mui-focused{
-    color: white !important;
+    color: #009fd5 !important;
 }
 .inputContainer{
     padding: 10px 0;
-    width: 31%;
+    width: 60%;
     min-height: 20px;
     text-align: center;
     justify-content: center;
     margin: auto;
+    margin-top: 10px;
 }
 .MuiButton-containedPrimary {
-    color: rgb(0, 0, 0) !important;
-    background-color: #90caf9 !important;
+    color: white !important;
+    background-color: #009fd5 !important;
     text-transform: capitalize;
 }
 
@@ -57,4 +74,18 @@
 
 .MuiAlert-icon{
     padding: 7px 7px !important;
+}
+
+
+.appLabel{
+    height: 46px;
+    font-family: Avenir;
+    font-size: 34px;
+    font-weight: 500;
+   
+    color: #ffffff;
+    text-align: center;
+    margin: auto;
+    margin-top: 0px;
+    justify-content: center;
 }

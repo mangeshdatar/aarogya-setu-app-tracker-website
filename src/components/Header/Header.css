@@ -1,0 +1,44 @@
+.header-container{
+    background: white;
+    display: flex;
+    flex-direction: row;
+    top: 0;
+    height: 70px;
+    width: 100%;
+}
+.header-container .loginContainer{
+display: none;
+}
+
+.logo{
+    background: lightblue;
+    width: 255px;
+    height: 70px;
+}
+.inputcontainer{
+    margin: 12px 43px;
+}
+.input{
+    height: 34px;
+    width: 292px;
+    border-radius: 6px;
+    padding-left: 37px;
+    font-size: 14px;
+    outline: none;
+}
+.addButton{
+    margin-left: 200px;
+    margin-top: 12px;
+}
+.buttonicon{
+    height: 40px;
+    width: 163px;
+}
+
+.logout{
+    height: 23px;
+    width: 28px;
+}
+.signOutLable{
+    color: grey;
+}

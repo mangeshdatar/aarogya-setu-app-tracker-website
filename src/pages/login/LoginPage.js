@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import LockOpenSharpIcon from '@material-ui/icons/LockOpenSharp';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import './LoginPage.css';
 import { db } from '../../services/firebase';
 import Alert from '@material-ui/lab/Alert';
+import logo from '../../assets/mobiquityLogo.png'
 
 export default class LoginPage extends Component {
     constructor (props) {
@@ -67,11 +67,13 @@ export default class LoginPage extends Component {
     }
     render() {
         return (
-            <div>
-                <form className="loginContainer" noValidate autoComplete="off" onSubmit= {this.contactSubmit.bind(this)}>
-                    <div className="margin10">
-                        <LockOpenSharpIcon />
+            <div  className="loginContainer">
+                <div className="lableContainer">
+                    <div><img src={logo} width="350px" height="100px"/></div>
+                    <div className="appLabel">Aarogya Setu App Tracker</div>
                     </div>
+                <form className="formContainer"  noValidate autoComplete="off" onSubmit= {this.contactSubmit.bind(this)}>
+                  
                     <h1 className="signInLable">Sign In</h1>
                     <div className="inputContainer">
                         <TextField fullWidth color="primary" id="username" onChange={e=>this.inputFiled(e,"username")} label="Email Address*" variant="outlined" />
