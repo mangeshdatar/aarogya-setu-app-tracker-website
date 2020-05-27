@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import {db ,newID} from '../../services/firebase'
+import { db, newID } from '../../services/firebase';
+import './AddEmployees.css';
+import closeIcon from '../../assets/closeIcon.png'
 export default class AddEmployees extends Component {
     constructor (props) {
         super(props);
@@ -36,7 +38,8 @@ export default class AddEmployees extends Component {
             devicePlatform: '',
             id:newID.key
         })
-        .then(function() {
+            .then(function () {
+            
             console.log("Document successfully written!");
         })
         .catch(function(error) {
@@ -90,8 +93,9 @@ export default class AddEmployees extends Component {
     render() {
         return (
             <div>
-                <form className="loginContainer" noValidate autoComplete="off" onSubmit={this.contactSubmit.bind(this)}>
-                    <div className="inputContainer">
+                <form className="formContainer" noValidate autoComplete="off" onSubmit={this.contactSubmit.bind(this)}>
+                    <span className="crossIcon" onClick={e => this.props.handleClose()}>  <img  className="crossImg" src={closeIcon} width="40px" height="40px"/>  </span>
+                    <div className="inputContainer addPadding">
                         <TextField fullWidth color="primary" id="empId" onChange={e => this.inputFiled(e, "empId")} label="Employee Id*" variant="outlined" />
                     </div>
                     <div className="inputContainer">

@@ -1,34 +1,47 @@
 import React, { Component } from 'react';
-import { db } from '../../services/firebase';
 import Cards from '../../components/Card/Cards';
 import EmployeeTable from '../../components/Table/EmployeeTable';
 import './Dashboard.css';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
 import Header from '../../components/Header/Header';
-
+import AddEmployees from '../AddEmployees/AddEmployees'
 
 export default class Dashboard extends Component {
     constructor (props) {
         super(props);
-        this.state = {
-            history:this.props.history
-        }
+        this.state = { show: false };
+
+
     }
-    navigateToEmployee() {
-    }
+    showModal = () => {
+        this.setState({ show: true });
+      };
+    
+      hideModal = () => {
+          this.setState({ show: false });
+          console.log("clicked",this.state.show)
+      };
+   
     render() {
+        let opacity = this.state.show ? "blackButton" : "whiteButton";
+
+
         return (
             <div>
-                <div>
-                    <Header/>
+                <div className={opacity}>
+                    <Header  show={this.state.show} handleOpen={this.showModal}/>
                 </div>
-                <div className="header">
+                <div className="header"  className={opacity}>
                     <Cards />
                 </div>
-                <div className="tableContainer">
-                    <EmployeeTable />
+                <div className={opacity}  >
+                    <div className="tableContainer">
+                        <EmployeeTable />
+                        </div>
                 </div>
+                <div>
+                    {this.state.show ? <AddEmployees handleClose={this.hideModal}/> : null}
+              </div>
+               
             </div>
         )
     }
