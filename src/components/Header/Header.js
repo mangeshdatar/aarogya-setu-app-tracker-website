@@ -21,12 +21,13 @@ export default class Header extends Component {
                 <span className="addButton" onClick={e => this.props.handleOpen()}>
                     <img className="buttonicon" src={addButton} width="100%"/>
                 </span>
+                <div className="vertical-line"></div>
                 <div className="logincontainer">
                     <span>
                         <img className="logout" src={logoutButton} width="100%" />
                         </span>
-                    <span className="signOutLable">Sign Out</span>
                 </div>
+                <span className="signOutLable">Sign Out</span>
             </div>
         )
     }
