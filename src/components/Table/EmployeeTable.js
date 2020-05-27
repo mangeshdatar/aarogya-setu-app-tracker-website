@@ -73,11 +73,11 @@ export default  function EmployeeTable() {
           <TableRow>
           <StyledTableCell>Employee Id</StyledTableCell>
             <StyledTableCell>Employee Name</StyledTableCell>
-            <StyledTableCell align="right">Aarogya Setu Availability</StyledTableCell>
-            <StyledTableCell align="right">Bluetooth Status</StyledTableCell>
-            <StyledTableCell align="right">Location Status</StyledTableCell>
-            <StyledTableCell align="right">Contact Number</StyledTableCell>
-            <StyledTableCell align="right">Last Update</StyledTableCell>
+            <StyledTableCell align="center">Aarogya Setu Availability</StyledTableCell>
+            <StyledTableCell align="center">Bluetooth Status</StyledTableCell>
+            <StyledTableCell align="center">Location Status</StyledTableCell>
+            <StyledTableCell align="left">Contact Number</StyledTableCell>
+            <StyledTableCell align="left">Last Update</StyledTableCell>
 
           </TableRow>
         </TableHead>
@@ -90,11 +90,11 @@ export default  function EmployeeTable() {
               <StyledTableCell component="th" scope="row">
                 {row.name}
               </StyledTableCell>
-              <StyledTableCell align="right">{row.appAvailability ? "Installed" : "NA"}</StyledTableCell>
-              <StyledTableCell align="right">{row.bluetoothStatus ? "ON" : "OFF"}</StyledTableCell>
-              <StyledTableCell align="right">{row.locationStatus ? "ON": "OFF"}</StyledTableCell>
-              <StyledTableCell align="right">{row.contactNo}</StyledTableCell>
-              <StyledTableCell align="right">Friday 20 May</StyledTableCell>
+              <StyledTableCell align="left">{row.appAvailability ? "Installed" : "NA"}</StyledTableCell>
+              <StyledTableCell align="left">{row.bluetoothStatus ? "ON" : "OFF"}</StyledTableCell>
+              <StyledTableCell align="left">{row.locationStatus ? "ON": "OFF"}</StyledTableCell>
+              <StyledTableCell align="left">{row.contactNo}</StyledTableCell>
+              <StyledTableCell align="left">Friday 20 May</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

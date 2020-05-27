@@ -5,6 +5,7 @@ import EmployeeTable from '../../components/Table/EmployeeTable';
 import './Dashboard.css';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
+import Header from '../../components/Header/Header';
 
 
 export default class Dashboard extends Component {
@@ -20,13 +21,10 @@ export default class Dashboard extends Component {
         return (
             <div>
                 <div>
-                    <Cards />
+                    <Header/>
                 </div>
-                <div className="addIcon">
-                    <span>Add Employee</span>
-                    <Fab color="primary" aria-label="add" onClick={this.navigateToEmployee}>
-                        <AddIcon />
-                    </Fab>
+                <div className="header">
+                    <Cards />
                 </div>
                 <div className="tableContainer">
                     <EmployeeTable />

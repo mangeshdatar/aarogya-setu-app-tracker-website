@@ -1,6 +1,7 @@
 .tableContainer{
-    width: 71%;
+    width: 96%;
     margin: auto;
+    margin-top: 2%;
 }
 .addIcon{
     text-align: end;
@@ -8,4 +9,37 @@
 .MuiFab-primary {
     height: 20px !important;
     width: 38px !important;
+}
+thead tr th{
+    background: #009fd5 !important;
+    color: black !important;
+}
+tbody tr {
+
+height: 41px;
+}
+.MuiTableCell-root{
+    padding: 7px !important;
+}
+.header{
+    margin-top: 2%;
+}
+.MuiTableCell-head {
+    color: rgba(0, 0, 0, 0.87);
+    font-weight: 500;
+    line-height: 1.5rem;
+    width: 110px;
+    height: 24px;
+    object-fit: contain;
+    font-family: Avenir-Roman;
+    font-size: 15px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.33;
+    letter-spacing: normal;
+    color: #ffffff !important;
+}
+
+.loginContainer{
 }
