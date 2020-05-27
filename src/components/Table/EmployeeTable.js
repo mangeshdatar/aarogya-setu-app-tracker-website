@@ -76,8 +76,8 @@ export default  function EmployeeTable() {
             <StyledTableCell align="center">Aarogya Setu Availability</StyledTableCell>
             <StyledTableCell align="center">Bluetooth Status</StyledTableCell>
             <StyledTableCell align="center">Location Status</StyledTableCell>
-            <StyledTableCell align="left">Contact Number</StyledTableCell>
-            <StyledTableCell align="left">Last Update</StyledTableCell>
+            <StyledTableCell align="left">Contact</StyledTableCell>
+            <StyledTableCell align="left">Last Sync</StyledTableCell>
 
           </TableRow>
         </TableHead>

@@ -27,8 +27,7 @@ display: none;
     outline: none;
 }
 .addButton{
-    margin-left: 200px;
-    margin-top: 12px;
+    margin: 12px 20px 0 675px;
 }
 .buttonicon{
     height: 40px;
@@ -36,9 +35,18 @@ display: none;
 }
 
 .logout{
+    margin: 21px 10px 0 20px;
     height: 23px;
     width: 28px;
 }
 .signOutLable{
+    margin-top: 23px;
     color: grey;
 }
+
+.vertical-line {
+    margin-top: 13px;
+    height: 35px;
+    border: solid 1px #d4d7e0;
+}
+  
