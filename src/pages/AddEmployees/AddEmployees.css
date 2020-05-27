@@ -1,0 +1,38 @@
+.formContainer{
+ 
+  width: 421px;
+    height: 408px;
+    border-radius: 13px;
+    background-color: #ffffff;
+    margin-top: -60vh;
+    position: fixed;
+    top: 0;
+    margin-left: 31%;
+    margin-top: 13%;
+}
+
+.inputContainer{
+    padding: 10px 0;
+    width: 60%;
+    min-height: 20px;
+    text-align: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 10px;
+}
+.addPadding{
+    padding-top: 40px;
+}
+
+.crossIcon{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.crossImg{
+    margin-left: 16px;
+    margin-top: -11px;
+    left: 10;
+    right: 3;
+    position: fixed;
+}

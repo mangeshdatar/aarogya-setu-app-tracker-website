@@ -43,3 +43,12 @@ height: 41px;
 
 .loginContainer{
 }
+.blackButton{
+    -webkit-filter: blur(2px);
+    filter: blur(2px);
+  margin-bottom: 50px;
+  }
+  
+  .whiteButton{
+    margin-bottom: 50px;
+  }
