@@ -27,7 +27,9 @@ export default class Header extends Component {
                         <img className="logout" alt="" src={logoutButton} width="100%" />
                         </span>
                 </div>
+                <div className="sign-out-container">
                 <span className="signOutLable">Sign Out</span>
+                </div>
             </div>
         )
     }
