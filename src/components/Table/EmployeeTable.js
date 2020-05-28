@@ -52,6 +52,10 @@ export default  function EmployeeTable(value) {
     getData();
 
   }, [setUserData]);
+
+  const pushDataToRow = user => {
+    rows.push(createData(user.id, user.name, user.appAvailability,user.bluetoothStatus, user.locationStatus, user.contactNo, user.employeeId))
+  }
   
   var rows = [];
   console.log("#######",userData);
@@ -59,16 +63,16 @@ export default  function EmployeeTable(value) {
   if (userData.length > 1) {
     userData.forEach((user) => {
       if (value.activeTab === 'allEmp') {
-        rows.push(createData(user.id, user.name, user.appAvailability,user.bluetoothStatus, user.locationStatus, user.contactNo, user.employeeId))
+        pushDataToRow(user);
        } else if(value.activeTab === 'activeEmp' && user.appAvailability) {
-      rows.push(createData(user.id, user.name, user.appAvailability,user.bluetoothStatus, user.locationStatus, user.contactNo, user.employeeId))
+        pushDataToRow(user);
      } else if (value.activeTab === 'inActiveEmp' && !user.appAvailability) {
-      rows.push(createData(user.id, user.name, user.appAvailability,user.bluetoothStatus, user.locationStatus, user.contactNo, user.employeeId))
-     } 
+      pushDataToRow(user);
+   }
     })
   }
   console.log("rows",rows);
-  
+
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="customized table">
