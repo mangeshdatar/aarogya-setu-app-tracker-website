@@ -14,7 +14,8 @@ export default class LoginPage extends Component {
             input: '',
             password: '',
             button: true,
-            invalid:false
+            invalid: false,
+            invalidEmail:false
         }
     }
     contactSubmit(form) {
@@ -46,6 +47,7 @@ export default class LoginPage extends Component {
             this.setState({
                 input: event.target.value
             }); 
+            console.log(this.state.input)
         } else if (field === "password") {
             this.setState({
                 password: event.target.value
@@ -53,7 +55,7 @@ export default class LoginPage extends Component {
         }
     }
     buttonDisable() {
-        if (this.state.input.length > 1 && this.state.password.length >1) {
+        if (new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(this.state.input) && this.state.password.length >5) {
             this.setState({
                 button : false
             })
@@ -61,8 +63,18 @@ export default class LoginPage extends Component {
             this.setState({
                 button: true
             });
+        }
+    }
 
-          
+    checkEmailFormat() {
+        if (!new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(this.state.input)) {
+            this.setState({
+                invalidEmail:true
+            })
+        } else {
+            this.setState({
+                invalidEmail:false
+            }) 
         }
     }
     render() {
@@ -72,12 +84,15 @@ export default class LoginPage extends Component {
                     <div><img src={logo} width="350px" alt="" height="100px"/></div>
                     <div className="appLabel">Aarogya Setu App Tracker</div>
                     </div>
-                <form className="formContainer"  noValidate autoComplete="off" onSubmit= {this.contactSubmit.bind(this)}>
+                <form className="formcontainer"  noValidate autoComplete="off" onSubmit= {this.contactSubmit.bind(this)}>
                   
                     <h1 className="signInLable">Sign In</h1>
                     <div className="inputContainer">
-                        <TextField fullWidth color="primary" id="username" onChange={e=>this.inputFiled(e,"username")} label="Email Address*" variant="outlined" />
+                        <TextField onBlur={this.checkEmailFormat.bind(this)} fullWidth color="primary" id="username" onChange={e=>this.inputFiled(e,"username")} label="Email Address*" variant="outlined" />
                     </div>
+                    {this.state.invalidEmail ?
+                        <div className="invalidEmail">Invalid email format</div>
+                    : null}
                     <div className="inputContainer">
                         <TextField fullWidth color="primary" id="password" onChange={e=>this.inputFiled(e,"password")}  label="Password*" variant="outlined" />
                     </div>

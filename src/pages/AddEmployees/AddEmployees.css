@@ -1,7 +1,7 @@
 .formContainer{
  
   width: 421px;
-    height: 408px;
+    height: 540px;
     border-radius: 13px;
     background-color: #ffffff;
     margin-top: -60vh;
@@ -10,7 +10,15 @@
     margin-left: 31%;
     margin-top: 13%;
 }
-
+.invalidEmail{
+    color: red;
+    text-align: center;
+}
+.validUser{
+    width: 247px;
+    margin: auto;
+    height: 60px;
+}
 .inputContainer{
     padding: 10px 0;
     width: 60%;
