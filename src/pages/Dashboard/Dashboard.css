@@ -40,8 +40,6 @@ height: 41px;
     color: #ffffff !important;
 }
 
-.loginContainer{
-}
 .blackButton{
     -webkit-filter: blur(2px);
     filter: blur(2px);
@@ -56,7 +54,6 @@ height: 41px;
     margin-right: -2px;
     display: flex;
     justify-content: flex-end;
-
 }
 
 .box{

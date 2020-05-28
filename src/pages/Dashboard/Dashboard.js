@@ -10,8 +10,6 @@ export default class Dashboard extends Component {
         super(props);
         this.state = { show: false, active: 'allEmp',
       };
-
-
     }
     showModal = () => {
         this.setState({ show: true });
@@ -57,6 +55,7 @@ export default class Dashboard extends Component {
                 <div className={opacity}>
                     <Header  show={this.state.show} handleOpen={this.showModal}/>
                 </div>
+                {/* eslint-disable-next-line */}
                 <div className="header"  className={opacity}>
                     <Cards />
                 </div>
@@ -75,10 +74,10 @@ export default class Dashboard extends Component {
                 </div>
                     <EmployeeTable activeTab={this.state.active}/>
                 </div>
+                </div>
                 <div>
                     {this.state.show ? <AddEmployees handleClose={this.hideModal}/> : null}
               </div>
-               </div>
             </div>
         )
     }
