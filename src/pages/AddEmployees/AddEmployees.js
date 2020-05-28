@@ -146,7 +146,7 @@ export default class AddEmployees extends Component {
         return (
             <div>
                 <form className="formContainer" id="form" noValidate autoComplete="off" onSubmit={e => this.contactSubmit(e)}>
-                    <span className="crossIcon" onClick={e => this.props.handleClose()}>  <img  className="crossImg" src={closeIcon} width="40px" height="40px"/>  </span>
+                    <span className="crossIcon" onClick={e => this.props.handleClose()}>  <img  className="crossImg" src={closeIcon} width="40px" height="40px" alt="" />  </span>
                     <div className="inputContainer addPadding">
                         <TextField onBlur={e =>this.inputFiled(e,"empId")} fullWidth color="primary" id="empId" onChange={e => this.inputFiled(e, "empId")} label="Employee Id*" variant="outlined" />
                     </div>

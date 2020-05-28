@@ -29,8 +29,8 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-function createData(name, appAvailability, bluetoothStatus, locationStatus, contactNo, employeeId) {
-  return { name, appAvailability, bluetoothStatus, locationStatus, contactNo ,employeeId};
+function createData(id, name, appAvailability, bluetoothStatus, locationStatus, contactNo, employeeId) {
+  return { id, name, appAvailability, bluetoothStatus, locationStatus, contactNo ,employeeId};
 }
 
 const useStyles = makeStyles({
@@ -59,13 +59,11 @@ export default  function EmployeeTable(value) {
   if (userData.length > 1) {
     userData.forEach((user) => {
       if (value.activeTab === 'allEmp') {
-        console.log("in active", user.appAvailability)
-        rows.push(createData(user.name, user.appAvailability,user.bluetoothStatus, user.locationStatus, user.contactNo, user.employeeId))
-  
+        rows.push(createData(user.id, user.name, user.appAvailability,user.bluetoothStatus, user.locationStatus, user.contactNo, user.employeeId))
        } else if(value.activeTab === 'activeEmp' && user.appAvailability) {
-      rows.push(createData(user.name, user.appAvailability,user.bluetoothStatus, user.locationStatus, user.contactNo, user.employeeId))
+      rows.push(createData(user.id, user.name, user.appAvailability,user.bluetoothStatus, user.locationStatus, user.contactNo, user.employeeId))
      } else if (value.activeTab === 'inActiveEmp' && !user.appAvailability) {
-      rows.push(createData(user.name, user.appAvailability,user.bluetoothStatus, user.locationStatus, user.contactNo, user.employeeId))
+      rows.push(createData(user.id, user.name, user.appAvailability,user.bluetoothStatus, user.locationStatus, user.contactNo, user.employeeId))
      } 
     })
   }
@@ -88,8 +86,8 @@ export default  function EmployeeTable(value) {
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-                            <StyledTableCell component="th" scope="row">
+            <StyledTableRow key={row.id}>
+              <StyledTableCell component="th" scope="row">
                 {row.employeeId}
               </StyledTableCell>
               <StyledTableCell component="th" scope="row">
