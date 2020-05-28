@@ -33,17 +33,13 @@ function createData(name, appAvailability, bluetoothStatus, locationStatus, cont
   return { name, appAvailability, bluetoothStatus, locationStatus, contactNo ,employeeId};
 }
 
-
-
-
-
 const useStyles = makeStyles({
   table: {
     minWidth: 700,
   },
 });
 
-export default  function EmployeeTable() {
+export default  function EmployeeTable(value) {
   const classes = useStyles();
   
 
@@ -58,10 +54,19 @@ export default  function EmployeeTable() {
   }, [setUserData]);
   
   var rows = [];
+  console.log("#######",userData);
+  console.log('@@@@@@@', value.activeTab)
   if (userData.length > 1) {
     userData.forEach((user) => {
-     
-         rows.push(createData(user.name, user.appAvailability,user.bluetoothStatus, user.locationStatus, user.contactNo, user.employeeId))
+      if (value.activeTab === 'allEmp') {
+        console.log("in active", user.appAvailability)
+        rows.push(createData(user.name, user.appAvailability,user.bluetoothStatus, user.locationStatus, user.contactNo, user.employeeId))
+  
+       } else if(value.activeTab === 'activeEmp' && user.appAvailability) {
+      rows.push(createData(user.name, user.appAvailability,user.bluetoothStatus, user.locationStatus, user.contactNo, user.employeeId))
+     } else if (value.activeTab === 'inActiveEmp' && !user.appAvailability) {
+      rows.push(createData(user.name, user.appAvailability,user.bluetoothStatus, user.locationStatus, user.contactNo, user.employeeId))
+     } 
     })
   }
   console.log("rows",rows);
@@ -73,9 +78,9 @@ export default  function EmployeeTable() {
           <TableRow>
           <StyledTableCell>Employee Id</StyledTableCell>
             <StyledTableCell>Employee Name</StyledTableCell>
-            <StyledTableCell align="center">Aarogya Setu Availability</StyledTableCell>
-            <StyledTableCell align="center">Bluetooth Status</StyledTableCell>
-            <StyledTableCell align="center">Location Status</StyledTableCell>
+            <StyledTableCell align="left">Aarogya Setu Availability</StyledTableCell>
+            <StyledTableCell align="left">Bluetooth Status</StyledTableCell>
+            <StyledTableCell align="left">Location Status</StyledTableCell>
             <StyledTableCell align="left">Contact</StyledTableCell>
             <StyledTableCell align="left">Last Sync</StyledTableCell>
 

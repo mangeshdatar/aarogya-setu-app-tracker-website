@@ -12,19 +12,19 @@ export default class Header extends Component {
         return (
             <div className='header-container'>
                 <span className='logo'>
-                    <img src={mobiquityLogo} width="100%"/>
+                    <img src={mobiquityLogo} alt="" width="100%"/>
                 </span>
                 <span className='inputcontainer'>
                <input className="input" placeholder="Search Employee"/>
                 </span>
 
                 <span className="addButton" onClick={e => this.props.handleOpen()}>
-                    <img className="buttonicon" src={addButton} width="100%"/>
+                    <img className="buttonicon" alt="" src={addButton} width="100%"/>
                 </span>
                 <div className="vertical-line"></div>
                 <div className="logincontainer">
                     <span>
-                        <img className="logout" src={logoutButton} width="100%" />
+                        <img className="logout" alt="" src={logoutButton} width="100%" />
                         </span>
                 </div>
                 <span className="signOutLable">Sign Out</span>

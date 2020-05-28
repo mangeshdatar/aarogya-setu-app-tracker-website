@@ -25,7 +25,7 @@ export default class LoginPage extends Component {
         .then(querySnapshot => {
           const data = querySnapshot.docs.map(doc => doc.data());
             console.log(data[0].username); 
-            if (this.state.input == data[0].username && this.state.password == data[0].password) {
+            if (this.state.input === data[0].username && this.state.password === data[0].password) {
                     this.props.history.push('/dashboard')
             } else {
                 this.setState({
@@ -69,7 +69,7 @@ export default class LoginPage extends Component {
         return (
             <div  className="loginContainer">
                 <div className="lableContainer">
-                    <div><img src={logo} width="350px" height="100px"/></div>
+                    <div><img src={logo} width="350px" alt="" height="100px"/></div>
                     <div className="appLabel">Aarogya Setu App Tracker</div>
                     </div>
                 <form className="formContainer"  noValidate autoComplete="off" onSubmit= {this.contactSubmit.bind(this)}>
