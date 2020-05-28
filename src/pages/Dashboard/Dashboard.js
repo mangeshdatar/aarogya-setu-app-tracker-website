@@ -8,7 +8,8 @@ import AddEmployees from '../AddEmployees/AddEmployees'
 export default class Dashboard extends Component {
     constructor (props) {
         super(props);
-        this.state = { show: false };
+        this.state = { show: false, active: 'allEmp',
+      };
 
 
     }
@@ -21,6 +22,32 @@ export default class Dashboard extends Component {
           console.log("clicked",this.state.show)
       };
    
+
+    navigateToEmployee() {
+    }
+
+  toggle(val){
+    if (this.state.active === val) {
+      this.setState({active : null})
+    } else {
+      this.setState({active : val})
+    }
+  }
+  
+  boxColor(val) {
+    if (this.state.active === val) {
+      return "white";
+    }
+    return "";
+  }
+
+  textColor(val) {
+    if (this.state.active === val) {
+      return "#009fd5";
+    }
+    return "#8f8d8d";
+  }
+    
     render() {
         let opacity = this.state.show ? "blackButton" : "whiteButton";
 
@@ -34,14 +61,24 @@ export default class Dashboard extends Component {
                     <Cards />
                 </div>
                 <div className={opacity}  >
-                    <div className="tableContainer">
-                        <EmployeeTable />
-                        </div>
+                <div className="tableContainer">
+                <div className="box-container">
+                <div className="box" style={{background: this.boxColor('allEmp'), color: this.textColor('allEmp')}} onClick={() => {this.toggle('allEmp')}} >
+                    <div className='box-heading'>All Employees</div>
+                </div>
+                <div className="box" style={{background: this.boxColor('activeEmp'), color: this.textColor('activeEmp')}} onClick={() => {this.toggle('activeEmp')}} >
+                    <div className='box-heading'>Active Employees</div>
+                </div>
+                <div className="box" style={{background: this.boxColor('inActiveEmp'), color: this.textColor('inActiveEmp')}} onClick={() => {this.toggle('inActiveEmp')}}>
+                    <div className='box-heading'>In-Active Employees</div>
+                </div>
+                </div>
+                    <EmployeeTable activeTab={this.state.active}/>
                 </div>
                 <div>
                     {this.state.show ? <AddEmployees handleClose={this.hideModal}/> : null}
               </div>
-               
+               </div>
             </div>
         )
     }

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, Typography, Grid, CardContent } from "@material-ui/core";
+import { Card, Grid, CardContent } from "@material-ui/core";
 import styles from "./Card.css";
 import CountUp from "react-countup";
 import cx from "classnames";
@@ -57,7 +57,7 @@ export default class Cards extends Component {
           >
             <CardContent>
               <Grid className={styles.logo}>
-                <div> <img src={blueLogo} width="60px;"/> </div>
+                <div> <img src={blueLogo} alt="" width="60px;"/> </div>
               </Grid>
               <div className='details'>
                 <CountUp
@@ -81,7 +81,7 @@ export default class Cards extends Component {
           >
             <CardContent>
               <Grid className={styles.logo}>
-                <div><img src={greenLogo} width="60px;"/></div>
+                <div><img src={greenLogo} alt="" width="60px;"/></div>
               </Grid>
               <div className='details'>
                 <CountUp
@@ -105,7 +105,7 @@ export default class Cards extends Component {
           >
             <CardContent>
               <Grid className={styles.logo}>
-                <div><img src={redLogo} width="60px;"/></div>
+                <div><img src={redLogo} alt="" width="60px;"/></div>
               </Grid>
               <div className='details'>
                 <CountUp

@@ -1,7 +1,6 @@
 .tableContainer{
-    width: 96%;
+    width: 97%;
     margin: auto;
-    margin-top: 2%;
 }
 .addIcon{
     text-align: end;
@@ -51,4 +50,31 @@ height: 41px;
   
   .whiteButton{
     margin-bottom: 50px;
+  }
+.box-container {
+    margin-top: -20px;
+    margin-right: -2px;
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.box{
+    vertical-align: middle;
+    background-color: #cfe7ee;
+    height: 45px;
+    width: 10%;
+    margin-right: 5px;
+  }
+
+  .box-heading{
+    text-align: center;
+    margin-top: 14px;
+    object-fit: contain;
+    font-family: Avenir;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.33;
+    letter-spacing: normal;
   }
