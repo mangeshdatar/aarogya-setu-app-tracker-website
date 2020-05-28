@@ -1,52 +1,72 @@
-.header-container{
-    background: white;
-    display: flex;
-    flex-direction: row;
-    top: 0;
-    height: 70px;
-    width: 100%;
-}
-.header-container .loginContainer{
-display: none;
+.header-container {
+  background: white;
+  display: flex;
+  flex-direction: row;
+  top: 0;
+  height: 70px;
+  width: 100%;
 }
 
-.logo{
-    background: lightblue;
-    width: 255px;
-    height: 70px;
-}
-.inputcontainer{
-    margin: 12px 43px;
-}
-.input{
-    height: 34px;
-    width: 292px;
-    border-radius: 6px;
-    padding-left: 37px;
-    font-size: 14px;
-    outline: none;
-}
-.addButton{
-    margin: 12px 20px 0 675px;
-}
-.buttonicon{
-    height: 40px;
-    width: 163px;
+.header-container .loginContainer {
+  display: none;
 }
 
-.logout{
-    margin: 21px 10px 0 20px;
-    height: 23px;
-    width: 28px;
+.logo {
+  background: lightblue;
+  width: 255px;
+  height: 70px;
 }
-.signOutLable{
-    margin-top: 23px;
-    color: grey;
+
+.inputcontainer {
+  display: flex;
+  align-items: center;
+  margin-left: 43px;
+}
+
+.input {
+  height: 34px;
+  width: 292px;
+  border-radius: 6px;
+  padding-left: 37px;
+  font-size: 14px;
+  outline: none;
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  margin-left: 44%;
+  margin-right: 1%;
+}
+
+.buttonicon {
+  height: 40px;
+  width: 163px;
+}
+
+.logincontainer {
+  display: flex;
+  align-items: center;
+}
+
+.logout {
+  height: 23px;
+  width: 28px;
+}
+
+.sign-out-container {
+  margin-left: 13px;
+  display: flex;
+  align-items: center;
+}
+
+.signOutLable {
+  color: grey;
 }
 
 .vertical-line {
-    margin-top: 13px;
-    height: 35px;
-    border: solid 1px #d4d7e0;
+  margin-top: 16px;
+  margin-right: 14px;
+  height: 36px;
+  border: solid 1px #d4d7e0;
 }
-  
