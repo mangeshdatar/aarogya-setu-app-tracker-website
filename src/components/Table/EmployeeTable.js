@@ -29,8 +29,8 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-function createData(id, name, appAvailability, bluetoothStatus, locationStatus, contactNo, employeeId) {
-  return { id, name, appAvailability, bluetoothStatus, locationStatus, contactNo ,employeeId};
+function createData(id, name, appAvailability, bluetoothStatus, locationStatus, contactNo, employeeId ,lastSeen) {
+  return { id, name, appAvailability, bluetoothStatus, locationStatus, contactNo ,employeeId,lastSeen};
 }
 
 const useStyles = makeStyles({
@@ -54,7 +54,7 @@ export default  function EmployeeTable(value) {
   }, [setUserData]);
 
   const pushDataToRow = user => {
-    rows.push(createData(user.id, user.name, user.appAvailability,user.bluetoothStatus, user.locationStatus, user.contactNo, user.employeeId))
+    rows.push(createData(user.id, user.name, user.appAvailability,user.bluetoothStatus, user.locationStatus, user.contactNo, user.employeeId, user.lastSeen))
   }
   
   var rows = [];
@@ -101,7 +101,7 @@ export default  function EmployeeTable(value) {
               <StyledTableCell align="left">{row.bluetoothStatus ? "ON" : "OFF"}</StyledTableCell>
               <StyledTableCell align="left">{row.locationStatus ? "ON": "OFF"}</StyledTableCell>
               <StyledTableCell align="left">{row.contactNo}</StyledTableCell>
-              <StyledTableCell align="left">Friday 20 May</StyledTableCell>
+              <StyledTableCell align="left">{row.lastSeen}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

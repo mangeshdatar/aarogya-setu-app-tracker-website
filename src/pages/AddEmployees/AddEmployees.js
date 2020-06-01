@@ -29,7 +29,11 @@ export default class AddEmployees extends Component {
     contactSubmit(form) {
         form.preventDefault();
         let myScope = this;
-        console.log(form)
+        console.log(form);
+        var today = new Date();
+        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        var dateTime = date+' '+time;
         db.collection("user").doc(newID.key).set({
             name: this.state.name,
             employeeId: this.state.empId,
@@ -40,7 +44,8 @@ export default class AddEmployees extends Component {
             bluetoothStatus: false,
             locationStatus: false,
             devicePlatform: '',
-            id:newID.key
+            id: newID.key,
+            lastSeen:dateTime
         })
             .then(function () {
                 myScope.setState({
