@@ -5,5 +5,8 @@ export const config = {
     projectId: '${projectId}',
     storageBucket: '${storageBucket}',
     messagingSenderId: '${messagingSenderId}',
-    appId: '${appId}'
+    appId: '${appId}',
+    senderEmail: '${senderEmail}',
+    emailUserId: '${emailUserId}',
+    emailTemplateId: '${emailTemplateId}',
   };

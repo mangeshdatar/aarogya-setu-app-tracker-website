@@ -78,6 +78,7 @@ export default  function EmployeeTable(value) {
       <Table className={classes.table} aria-label="customized table">
         <TableHead>
           <TableRow>
+          <StyledTableCell>Sr No.</StyledTableCell>
           <StyledTableCell>Employee Id</StyledTableCell>
             <StyledTableCell>Employee Name</StyledTableCell>
             <StyledTableCell align="left">Aarogya Setu Availability</StyledTableCell>
@@ -85,12 +86,14 @@ export default  function EmployeeTable(value) {
             <StyledTableCell align="left">Location Status</StyledTableCell>
             <StyledTableCell align="left">Contact</StyledTableCell>
             <StyledTableCell align="left">Last Sync</StyledTableCell>
-
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {rows.map((row, index) => (
             <StyledTableRow key={row.id}>
+              <StyledTableCell component="th" scope="row">
+                {index+1}
+              </StyledTableCell>
               <StyledTableCell component="th" scope="row">
                 {row.employeeId}
               </StyledTableCell>
