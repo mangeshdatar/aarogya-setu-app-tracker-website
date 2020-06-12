@@ -6,6 +6,8 @@ import './AddEmployees.css';
 import closeIcon from '../../assets/closeIcon.png';
 import Alert from '@material-ui/lab/Alert';
 
+import { config } from '../../environments/environment'
+
 export default class AddEmployees extends Component {
     constructor (props) {
         super(props);
@@ -38,7 +40,7 @@ export default class AddEmployees extends Component {
             name: this.state.name,
             employeeId: this.state.empId,
             email: this.state.email,
-            contact: this.state.contact,
+            contactNo: this.state.contact,
             password: newID.key,
             appAvailability: false,
             bluetoothStatus: false,
@@ -55,12 +57,41 @@ export default class AddEmployees extends Component {
                 document.getElementById("form").reset();
                 // myScope.buttonDisable();
                 console.log("Document successfully written!");
+            const  templateParams = {
+                userName: myScope.state.name,
+                senderEmail: config.senderEmail,
+                receiverEmail: myScope.state.email,
+                feedback: 'Email sent',
+                emailBody : {
+                    msg: 'Please login to aarogya setu tracker app using following credentials:',
+                    password: newID.key,
+                }
+                }
+                
+              myScope.sendEmail(
+                config.emailTemplateId,
+                templateParams,
+                config.emailUserId,
+              )
+               
         })
         .catch(function(error) {
             console.error("Error writing document: ", error);
         });
     }
 
+    sendEmail = (templateId, templateParams, user ) => {
+          window.emailjs.send(
+            'gmail', // email provider in your EmailJS account
+            templateId,
+            templateParams,
+            user,
+          )
+            .then(res => {
+              console.log('Email sent successfully', res)
+            })
+            .catch(err => console.error('Failed to send feedback. Error: ', err))
+        }
     inputFiled(event, field) {
         switch (field) {
             case "empId":
