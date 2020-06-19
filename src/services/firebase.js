@@ -6,5 +6,5 @@ const firebaseApp = firebase.initializeApp(config);
 
 const db = firebaseApp.firestore();
 const newID = firebaseApp.database().ref().push()
-
-export { db ,newID };
+const  storage = firebase.storage().ref()
+export { db ,newID , storage };

@@ -21,7 +21,7 @@ export default class LoginPage extends Component {
     contactSubmit(form) {
         console.log("-----------",this.props.history)
         form.preventDefault();
-        db.collection("admin")
+        db.collection("adminWeb")
         .get()
         .then(querySnapshot => {
           const data = querySnapshot.docs.map(doc => doc.data());

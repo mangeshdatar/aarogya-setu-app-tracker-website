@@ -44,3 +44,13 @@
     right: 3;
     position: fixed;
 }
+.fileInput{
+    display: inline !important;
+}
+
+.textColor{
+    color: black;
+}
+.errorMessage{
+    color: red;
+}

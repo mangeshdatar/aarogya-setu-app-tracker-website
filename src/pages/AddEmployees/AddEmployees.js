@@ -7,6 +7,10 @@ import closeIcon from '../../assets/closeIcon.png';
 import Alert from '@material-ui/lab/Alert';
 
 import { config } from '../../environments/environment'
+import Dropzone from 'react-dropzone';
+
+import { storage } from '../../services/firebase';
+import readXlsxFile from 'read-excel-file'
 
 export default class AddEmployees extends Component {
     constructor (props) {
@@ -24,14 +28,18 @@ export default class AddEmployees extends Component {
             empIdValidation: false,
             emailValidation: false,
             contactValidation: false,
-            userAdded:false
-
+            userAdded:false,
+            file: "",
+            validFile:false
         }
     }
+    
     contactSubmit(form) {
         form.preventDefault();
+        if (!this.checkFileds()) {
+            return
+        }
         let myScope = this;
-        console.log(form);
         var today = new Date();
         var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
@@ -157,11 +165,13 @@ export default class AddEmployees extends Component {
         this.buttonDisable();
 
     }
+
+    checkFileds() {
+        return this.state.empId.length > 4 &&
+        new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(this.state.email) &&
+        new RegExp(/^\d{10}$/).test(this.state.contact)
+    }
     buttonDisable() {
-        console.log(this.state.name);
-        console.log(this.state.empId.length>4);
-        console.log(new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(this.state.email));
-                console.log(new RegExp(/^\d{10}$/).test(this.state.contact))
         if (
             this.state.name.length > 4 &&
             this.state.empId.length>4 &&
@@ -177,7 +187,62 @@ export default class AddEmployees extends Component {
             })  
         }
     }
-   
+    uploadExcelSheet(uploadFile) {
+        if(uploadFile[0].name.includes("xlsx")){
+            readXlsxFile(uploadFile[0]).then((rows) => {
+                if (rows[0][0] == "Empolyee Id" && rows[0][1] == "Employee Name" && rows[0][2] == "Employee Email" && rows[0][3] == "Employee Contact") {
+                    let skipFirstColomn = 0;
+                    rows.forEach((row) => {
+                        skipFirstColomn++;
+                        console.log(skipFirstColomn);
+                        if (skipFirstColomn >= 2) {
+                            console.log(row);
+                            this.insertEmployeeData(row)
+                        }
+                    })
+                } else {
+                    this.setState({
+                        validFile :true
+                    })
+                }
+            })
+        } else {
+            this.setState({
+                validFile :true
+            })
+            console.log("invalid file format")
+        }
+    }
+    downloadFile(){
+            storage.child('Employee Details.xlsx').getDownloadURL().then((url) => {
+                console.log(url);
+                window.open(url);
+              }).catch((error) => {
+              })
+    }
+    insertEmployeeData(data) {
+        var today = new Date();
+        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        var dateTime = date+' '+time;
+        db.collection("user").doc(newID.key).set({
+            employeeId: data[0],
+            name: data[1],
+            email: data[2],
+            contactNo: data[3],
+            password: newID.key,
+            appAvailability: false,
+            bluetoothStatus: false,
+            locationStatus: false,
+            devicePlatform: '',
+            id: newID.key,
+            lastSeen: dateTime
+        }).then(function () {
+            console.log("added data")
+        }).catch(function(error) {
+            console.error("Error writing document: ", error);
+        });;
+    }
     render() {
         return (
             <div>
@@ -210,13 +275,40 @@ export default class AddEmployees extends Component {
                     {this.state.contactValidation? 
                                         <div className="invalidEmail">Invalid Contact  Number</div>
                                         : null}
-
+ 
+                    
                     <div className="inputContainer">
                         <Button type="submit" fullWidth variant="contained" color="primary" disabled={this.state.button}>
                             Add Employee
                         </Button>
 
                     </div>
+                    <div className="textColor">Download Sample Excelsheet
+          
+          <button onClick={()=>this.downloadFile()}>Download</button>
+</div>
+                   
+                    <Dropzone onDrop={acceptedFiles => this.uploadExcelSheet(acceptedFiles)}>
+  {({getRootProps, getInputProps}) => (
+    <section>
+      <div {...getRootProps()}>
+        <input {...getInputProps()} className="fileInput" />
+        <p className="textColor">Drag excelsheet files here, or click to select files</p>
+      </div>
+    </section>
+  )}
+                    </Dropzone>
+                    <div>
+                        {
+                            this.state.validFile ?
+                            <p className="errorMessage">Please upload valid Excelsheet File</p>
+                                : null
+                        }
+
+                    </div>
+                    <span className="textColor">
+                        {this.state.file}
+                    </span>
                     <div className="validUser">
                     {this.state.userAdded ?
 
