@@ -17,7 +17,6 @@ export default class Dashboard extends Component {
     
       hideModal = () => {
           this.setState({ show: false });
-          console.log("clicked",this.state.show)
       };
    
 

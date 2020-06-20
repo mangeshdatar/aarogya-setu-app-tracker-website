@@ -28,12 +28,33 @@ export default class AddEmployees extends Component {
             empIdValidation: false,
             emailValidation: false,
             contactValidation: false,
-            userAdded:false,
+            userAdded: false,
             file: "",
-            validFile:false
+            validFile: false,
+            singleRecord: true,
+            uploadRecord: false,
+            gender: this.props.gender,
+            uploadedRecord:false
+
         }
+      
+          this.setGender = this.setGender.bind(this)
     }
-    
+    setGender(e) {
+        if (e.target.value === "uploadRecord") {
+            this.setState({
+                uploadRecord: true,
+                singleRecord:false
+              }) 
+        } else {
+            this.setState({
+                uploadRecord: false,
+                singleRecord:true
+              }) 
+        }
+        console.log(e.target.value)
+       
+      }
     contactSubmit(form) {
         form.preventDefault();
         if (!this.checkFileds()) {
@@ -41,9 +62,9 @@ export default class AddEmployees extends Component {
         }
         let myScope = this;
         var today = new Date();
-        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-        var dateTime = date+' '+time;
+        var dateTime = date + ' ' + time;
         db.collection("user").doc(newID.key).set({
             name: this.state.name,
             employeeId: this.state.empId,
@@ -55,99 +76,99 @@ export default class AddEmployees extends Component {
             locationStatus: false,
             devicePlatform: '',
             id: newID.key,
-            lastSeen:dateTime
+            lastSeen: dateTime
         })
             .then(function () {
                 myScope.setState({
                     userAdded: true,
-                    button:true
+                    button: true
                 });
                 document.getElementById("form").reset();
                 // myScope.buttonDisable();
                 console.log("Document successfully written!");
-            const  templateParams = {
-                userName: myScope.state.name,
-                senderEmail: config.senderEmail,
-                receiverEmail: myScope.state.email,
-                feedback: 'Email sent',
-                emailBody : {
-                    msg: 'Please login to aarogya setu tracker app using following credentials:',
-                    password: newID.key,
+                const templateParams = {
+                    userName: myScope.state.name,
+                    senderEmail: config.senderEmail,
+                    receiverEmail: myScope.state.email,
+                    feedback: 'Email sent',
+                    emailBody: {
+                        msg: 'Please login to aarogya setu tracker app using following credentials:',
+                        password: newID.key,
+                    }
                 }
-                }
-                
-              myScope.sendEmail(
-                config.emailTemplateId,
-                templateParams,
-                config.emailUserId,
-              )
-               
-        })
-        .catch(function(error) {
-            console.error("Error writing document: ", error);
-        });
+
+                myScope.sendEmail(
+                    config.emailTemplateId,
+                    templateParams,
+                    config.emailUserId,
+                )
+
+            })
+            .catch(function (error) {
+                console.error("Error writing document: ", error);
+            });
     }
 
-    sendEmail = (templateId, templateParams, user ) => {
-          window.emailjs.send(
+    sendEmail = (templateId, templateParams, user) => {
+        window.emailjs.send(
             'gmail', // email provider in your EmailJS account
             templateId,
             templateParams,
             user,
-          )
+        )
             .then(res => {
-              console.log('Email sent successfully', res)
+                console.log('Email sent successfully', res)
             })
             .catch(err => console.error('Failed to send feedback. Error: ', err))
-        }
+    }
     inputFiled(event, field) {
         switch (field) {
             case "empId":
                 this.setState({ empId: event.target.value });
-                if (event.target.value.length < 4 ) {
+                if (event.target.value.length < 4) {
                     this.setState({
-                        empIdValidation:true
+                        empIdValidation: true
                     })
                 } else {
                     this.setState({
-                        empIdValidation:false
-                    }) 
+                        empIdValidation: false
+                    })
                 }
                 break;
             case "name":
                 this.setState({ name: event.target.value });
-                if (event.target.value.length < 4 ) {
+                if (event.target.value.length < 4) {
                     this.setState({
-                        nameValidation:true
+                        nameValidation: true
                     })
                 } else {
                     this.setState({
-                        nameValidation:false
-                    }) 
+                        nameValidation: false
+                    })
                 }
                 break;
             case "email":
                 this.setState({ email: event.target.value });
-                if (!new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(event.target.value) ) {
+                if (!new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(event.target.value)) {
                     this.setState({
-                        emailValidation:true
+                        emailValidation: true
                     })
                 } else {
                     this.setState({
-                        emailValidation:false
-                    }) 
+                        emailValidation: false
+                    })
                 }
                 break;
             case "contact":
                 this.setState({ contact: event.target.value })
-                if (!new RegExp(/^\d{10}$/).test(event.target.value) ) {
+                if (!new RegExp(/^\d{10}$/).test(event.target.value)) {
                     this.setState({
-                        contactValidation:true
+                        contactValidation: true
                     })
                 } else {
                     this.setState({
-                        contactValidation:false
-                    }) 
+                        contactValidation: false
+                    })
                 }
                 break;
             default:
@@ -168,13 +189,13 @@ export default class AddEmployees extends Component {
 
     checkFileds() {
         return this.state.empId.length > 4 &&
-        new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(this.state.email) &&
-        new RegExp(/^\d{10}$/).test(this.state.contact)
+            new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(this.state.email) &&
+            new RegExp(/^\d{10}$/).test(this.state.contact)
     }
     buttonDisable() {
         if (
             this.state.name.length > 4 &&
-            this.state.empId.length>4 &&
+            this.state.empId.length > 4 &&
             new RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}/g).test(this.state.email) &&
             new RegExp(/^\d{10}$/).test(this.state.contact)
         ) {
@@ -184,11 +205,11 @@ export default class AddEmployees extends Component {
         } else {
             this.setState({
                 button: true
-            })  
+            })
         }
     }
     uploadExcelSheet(uploadFile) {
-        if(uploadFile[0].name.includes("xlsx")){
+        if (uploadFile[0].name.includes("xlsx")) {
             readXlsxFile(uploadFile[0]).then((rows) => {
                 if (rows[0][0] == "Empolyee Id" && rows[0][1] == "Employee Name" && rows[0][2] == "Employee Email" && rows[0][3] == "Employee Contact") {
                     let skipFirstColomn = 0;
@@ -202,29 +223,30 @@ export default class AddEmployees extends Component {
                     })
                 } else {
                     this.setState({
-                        validFile :true
+                        validFile: true
                     })
                 }
             })
         } else {
             this.setState({
-                validFile :true
+                validFile: true
             })
             console.log("invalid file format")
         }
     }
-    downloadFile(){
-            storage.child('Employee Details.xlsx').getDownloadURL().then((url) => {
-                console.log(url);
-                window.open(url);
-              }).catch((error) => {
-              })
+    downloadFile() {
+        storage.child('Employee Details.xlsx').getDownloadURL().then((url) => {
+            console.log(url);
+            window.open(url);
+        }).catch((error) => {
+        })
     }
     insertEmployeeData(data) {
         var today = new Date();
-        var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-        var dateTime = date+' '+time;
+        var dateTime = date + ' ' + time;
+        let myScope = this;
         db.collection("user").doc(newID.key).set({
             employeeId: data[0],
             name: data[1],
@@ -238,83 +260,123 @@ export default class AddEmployees extends Component {
             id: newID.key,
             lastSeen: dateTime
         }).then(function () {
-            console.log("added data")
-        }).catch(function(error) {
+            console.log("added data");
+            myScope.setState({
+                uploadedRecord: true,
+                validFile: false
+            });
+            setTimeout(() => {
+            myScope.props.handleClose();
+                
+            },1000)
+        }).catch(function (error) {
             console.error("Error writing document: ", error);
-        });;
+        });
     }
+   
     render() {
+        const {gender} = this.state
+
         return (
             <div>
                 <form className="formContainer" id="form" noValidate autoComplete="off" onSubmit={e => this.contactSubmit(e)}>
-                    <span className="crossIcon" onClick={e => this.props.handleClose()}>  <img  className="crossImg" src={closeIcon} width="40px" height="40px" alt="" />  </span>
-                    <div className="inputContainer addPadding">
-                        <TextField onBlur={e =>this.inputFiled(e,"empId")} fullWidth color="primary" id="empId" onChange={e => this.inputFiled(e, "empId")} label="Employee Id*" variant="outlined" />
-                    </div>
-                    {this.state.empIdValidation ? 
-                                        <div className="invalidEmail">Invalid Employee Id</div>
-                                        : null}
-
-                    <div className="inputContainer">
-                        <TextField onBlur={e =>this.inputFiled(e,"name")} fullWidth color="primary" id="name" onChange={e => this.inputFiled(e, "name")} label="Employee Name*" variant="outlined" />
-                    </div>
-                    {this.state.nameValidation ? 
-                                        <div className="invalidEmail">Invalid Name Format</div>
-                                        : null}
-
-                    <div className="inputContainer">
-                        <TextField onBlur={e =>this.inputFiled(e,"email")} fullWidth color="primary" id="email" onChange={e => this.inputFiled(e, "email")} label="Employee Email*" variant="outlined" />
-                    </div>
-                    {this.state.emailValidation ? 
-                                        <div className="invalidEmail">Invalid email format</div>
-                                        : null}
-
-                    <div className="inputContainer">
-                        <TextField onBlur={e =>this.inputFiled(e,"contact")} fullWidth color="primary" id="contact" onChange={e => this.inputFiled(e, "contact")} label="Contact Number*" variant="outlined" />
-                    </div>
-                    {this.state.contactValidation? 
-                                        <div className="invalidEmail">Invalid Contact  Number</div>
-                                        : null}
- 
+                    <span className="crossIcon" onClick={e => this.props.handleClose()}>  <img className="crossImg" src={closeIcon} width="40px" height="40px" alt="" />  </span>
                     
-                    <div className="inputContainer">
-                        <Button type="submit" fullWidth variant="contained" color="primary" disabled={this.state.button}>
-                            Add Employee
+                    
+                    <div className="radio">
+                        <label className="radioContainer">
+                            <input type="radio" checked={gender == "singleRecord"} checked={this.state.singleRecord} onClick={this.setGender} value="singleRecord"  />
+                            <span className="radioLable"> Add One Employee </span>
+                        </label>
+                        <label className="radioContainer">
+                            <input type="radio" checked={gender == "uploadRecord"} checked={this.state.uploadRecord} onClick={this.setGender} value="uploadRecord"  />
+                            <span className="radioLable"> Upload Employee Excelsheet</span>
+                        </label>
+                    </div>
+                   
+                    <div className={this.state.uploadRecord ? "hide" : null}>
+                          <div className="inputContainer addPadding">
+                                <TextField onBlur={e => this.inputFiled(e, "empId")} fullWidth color="primary" id="empId" onChange={e => this.inputFiled(e, "empId")} label="Employee Id*" variant="outlined" />
+                            </div>
+                        {this.state.empIdValidation ?
+                            <div className="invalidEmail">Invalid Employee Id</div>
+                            : null}
+
+                        <div className="inputContainer">
+                            <TextField onBlur={e => this.inputFiled(e, "name")} fullWidth color="primary" id="name" onChange={e => this.inputFiled(e, "name")} label="Employee Name*" variant="outlined" />
+                        </div>
+                        {this.state.nameValidation ?
+                            <div className="invalidEmail">Invalid Name Format</div>
+                            : null}
+
+                        <div className="inputContainer">
+                            <TextField onBlur={e => this.inputFiled(e, "email")} fullWidth color="primary" id="email" onChange={e => this.inputFiled(e, "email")} label="Employee Email*" variant="outlined" />
+                        </div>
+                        {this.state.emailValidation ?
+                            <div className="invalidEmail">Invalid email format</div>
+                            : null}
+
+                        <div className="inputContainer">
+                            <TextField onBlur={e => this.inputFiled(e, "contact")} fullWidth color="primary" id="contact" onChange={e => this.inputFiled(e, "contact")} label="Contact Number*" variant="outlined" />
+                        </div>
+                        {this.state.contactValidation ?
+                            <div className="invalidEmail">Invalid Contact  Number</div>
+                            : null}
+
+
+                        <div className="inputContainer">
+                            <Button type="submit" fullWidth variant="contained" color="primary" disabled={this.state.button}>
+                                Add Employee
                         </Button>
 
+                        </div>
+                    
                     </div>
-                    <div className="textColor">Download Sample Excelsheet
-          
-          <button onClick={()=>this.downloadFile()}>Download</button>
-</div>
-                   
+                    <div className={this.state.singleRecord ? "hide" : null}>
+                        <div className="fileContainer">
+                            <div className="textColor">
+                       <div  className="sampleText"> 1. Download Sample Excelsheet</div>
+        <div>
+                                    <button className="button" onClick={() => this.downloadFile()}>Download</button>
+                                    </div>
+                    </div>
+
                     <Dropzone onDrop={acceptedFiles => this.uploadExcelSheet(acceptedFiles)}>
-  {({getRootProps, getInputProps}) => (
-    <section>
-      <div {...getRootProps()}>
-        <input {...getInputProps()} className="fileInput" />
-        <p className="textColor">Drag excelsheet files here, or click to select files</p>
-      </div>
-    </section>
-  )}
+                        {({ getRootProps, getInputProps }) => (
+                            <section>
+                                <div {...getRootProps()}>
+                                    <p className="fileText">2. Drag excelsheet files here, or click to select files</p>
+                                    <input {...getInputProps()} className="fileInput" />
+
+                                        </div>
+                            </section>
+                        )}
                     </Dropzone>
                     <div>
                         {
                             this.state.validFile ?
-                            <p className="errorMessage">Please upload valid Excelsheet File</p>
+                                <Alert severity="error">Please upload valid Excelsheet File</Alert>
                                 : null
                         }
 
                     </div>
                     <span className="textColor">
                         {this.state.file}
-                    </span>
-                    <div className="validUser">
-                    {this.state.userAdded ?
+                        </span>
+                        </div>
+                        <div className="validUser">
+                        {this.state.uploadedRecord ?
 
-                        <Alert severity="success">Added Employee Successfully</Alert>: null
-                }
-                </div> 
+                            <Alert severity="success">Uploaded Employee Record's Successfully</Alert> : null
+                        }
+                    </div>
+                        </div>
+                    <div className="validUser">
+                        {this.state.userAdded ?
+
+                            <Alert severity="success">Added Employee Successfully</Alert> : null
+                        }
+                    </div>
                 </form>
             </div>
         )

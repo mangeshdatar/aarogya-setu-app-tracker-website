@@ -58,8 +58,7 @@ export default  function EmployeeTable(value) {
   }
   
   var rows = [];
-  console.log("#######",userData);
-  console.log('@@@@@@@', value.activeTab)
+  
   if (userData.length > 1) {
     userData.forEach((user) => {
       if (value.activeTab === 'allEmp') {
@@ -71,7 +70,6 @@ export default  function EmployeeTable(value) {
    }
     })
   }
-  console.log("rows",rows);
 
   return (
     <TableContainer component={Paper}>
