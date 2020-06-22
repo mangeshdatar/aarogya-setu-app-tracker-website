@@ -190,7 +190,7 @@ export default class AddEmployees extends Component {
     uploadExcelSheet(uploadFile) {
         if(uploadFile[0].name.includes("xlsx")){
             readXlsxFile(uploadFile[0]).then((rows) => {
-                if (rows[0][0] == "Empolyee Id" && rows[0][1] == "Employee Name" && rows[0][2] == "Employee Email" && rows[0][3] == "Employee Contact") {
+                if (rows[0][0] === "Empolyee Id" && rows[0][1] === "Employee Name" && rows[0][2] === "Employee Email" && rows[0][3] === "Employee Contact") {
                     let skipFirstColomn = 0;
                     rows.forEach((row) => {
                         skipFirstColomn++;
