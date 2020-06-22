@@ -11,11 +11,14 @@ export default class Dashboard extends Component {
         this.state = { show: false, active: 'allEmp',
       };
     }
-    showModal = () => {
+  showModal = () => {
+      debugger
         this.setState({ show: true });
+        
       };
     
-      hideModal = () => {
+  hideModal = () => {
+        debugger
           this.setState({ show: false });
       };
    
@@ -71,7 +74,7 @@ export default class Dashboard extends Component {
                     <div className='box-heading'>In-Active Employees</div>
                 </div>
                 </div>
-                    <EmployeeTable activeTab={this.state.active}/>
+                    <EmployeeTable refreshData={this.state.show} activeTab={this.state.active}/>
                 </div>
                 </div>
                 <div>

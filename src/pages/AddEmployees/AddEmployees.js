@@ -33,14 +33,14 @@ export default class AddEmployees extends Component {
             validFile: false,
             singleRecord: true,
             uploadRecord: false,
-            gender: this.props.gender,
+            selectRecord: this.props.selectRecord,
             uploadedRecord:false
 
         }
       
-          this.setGender = this.setGender.bind(this)
+          this.uploadRecords = this.uploadRecords.bind(this)
     }
-    setGender(e) {
+    uploadRecords(e) {
         if (e.target.value === "uploadRecord") {
             this.setState({
                 uploadRecord: true,
@@ -52,7 +52,6 @@ export default class AddEmployees extends Component {
                 singleRecord:true
               }) 
         }
-        console.log(e.target.value)
        
       }
     contactSubmit(form) {
@@ -61,10 +60,7 @@ export default class AddEmployees extends Component {
             return
         }
         let myScope = this;
-        var today = new Date();
-        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-        var dateTime = date + ' ' + time;
+           var dateTime = myScope.getTime();
         db.collection("user").doc(newID.key).set({
             name: this.state.name,
             employeeId: this.state.empId,
@@ -84,8 +80,6 @@ export default class AddEmployees extends Component {
                     button: true
                 });
                 document.getElementById("form").reset();
-                // myScope.buttonDisable();
-                console.log("Document successfully written!");
                 const templateParams = {
                     userName: myScope.state.name,
                     senderEmail: config.senderEmail,
@@ -109,6 +103,12 @@ export default class AddEmployees extends Component {
             });
     }
 
+    getTime() {
+        var today = new Date();
+        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        return date + ' ' + time;
+    }
     sendEmail = (templateId, templateParams, user) => {
         window.emailjs.send(
             'gmail', // email provider in your EmailJS account
@@ -117,7 +117,6 @@ export default class AddEmployees extends Component {
             user,
         )
             .then(res => {
-                console.log('Email sent successfully', res)
             })
             .catch(err => console.error('Failed to send feedback. Error: ', err))
     }
@@ -211,13 +210,11 @@ export default class AddEmployees extends Component {
     uploadExcelSheet(uploadFile) {
         if (uploadFile[0].name.includes("xlsx")) {
             readXlsxFile(uploadFile[0]).then((rows) => {
-                if (rows[0][0] == "Empolyee Id" && rows[0][1] == "Employee Name" && rows[0][2] == "Employee Email" && rows[0][3] == "Employee Contact") {
+                if (rows[0][0] === "Empolyee Id" && rows[0][1] === "Employee Name" && rows[0][2] === "Employee Email" && rows[0][3] === "Employee Contact") {
                     let skipFirstColomn = 0;
                     rows.forEach((row) => {
                         skipFirstColomn++;
-                        console.log(skipFirstColomn);
                         if (skipFirstColomn >= 2) {
-                            console.log(row);
                             this.insertEmployeeData(row)
                         }
                     })
@@ -231,21 +228,17 @@ export default class AddEmployees extends Component {
             this.setState({
                 validFile: true
             })
-            console.log("invalid file format")
         }
     }
     downloadFile() {
         storage.child('Employee Details.xlsx').getDownloadURL().then((url) => {
-            console.log(url);
             window.open(url);
         }).catch((error) => {
         })
     }
     insertEmployeeData(data) {
-        var today = new Date();
-        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-        var dateTime = date + ' ' + time;
+     debugger
+        var dateTime = this.getTime();
         let myScope = this;
         db.collection("user").doc(newID.key).set({
             employeeId: data[0],
@@ -260,22 +253,38 @@ export default class AddEmployees extends Component {
             id: newID.key,
             lastSeen: dateTime
         }).then(function () {
-            console.log("added data");
             myScope.setState({
                 uploadedRecord: true,
                 validFile: false
             });
+            debugger
+            const templateParams = {
+                userName: data[1],
+                senderEmail: config.senderEmail,
+                receiverEmail: data[2],
+                feedback: 'Email sent',
+                emailBody: {
+                    msg: 'Please login to aarogya setu tracker app using following credentials:',
+                    password: newID.key,
+                }
+            }
+
+            myScope.sendEmail(
+                config.emailTemplateId,
+                templateParams,
+                config.emailUserId,
+            )
+
             setTimeout(() => {
             myScope.props.handleClose();
                 
             },1000)
         }).catch(function (error) {
-            console.error("Error writing document: ", error);
         });
     }
    
     render() {
-        const {gender} = this.state
+        const {selectRecord} = this.state
 
         return (
             <div>
@@ -285,11 +294,11 @@ export default class AddEmployees extends Component {
                     
                     <div className="radio">
                         <label className="radioContainer">
-                            <input type="radio" checked={gender == "singleRecord"} checked={this.state.singleRecord} onClick={this.setGender} value="singleRecord"  />
+                            <input type="radio" checked={selectRecord === "singleRecord"} checked={this.state.singleRecord} onClick={this.uploadRecords} value="singleRecord"  />
                             <span className="radioLable"> Add One Employee </span>
                         </label>
                         <label className="radioContainer">
-                            <input type="radio" checked={gender == "uploadRecord"} checked={this.state.uploadRecord} onClick={this.setGender} value="uploadRecord"  />
+                            <input type="radio" checked={selectRecord === "uploadRecord"} checked={this.state.uploadRecord} onClick={this.uploadRecords} value="uploadRecord"  />
                             <span className="radioLable"> Upload Employee Excelsheet</span>
                         </label>
                     </div>
