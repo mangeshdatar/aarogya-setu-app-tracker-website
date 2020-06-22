@@ -5,5 +5,10 @@ export const config = {
   projectId: '',
   storageBucket: '',
   messagingSenderId: '',
-  appId: ''
+  appId: '',
+  senderEmail: '',
+  emailUserId: '',
+  emailTemplateId: '',
   };
+
+

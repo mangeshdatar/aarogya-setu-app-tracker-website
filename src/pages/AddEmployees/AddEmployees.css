@@ -7,8 +7,8 @@
     margin-top: -60vh;
     position: fixed;
     top: 0;
-    margin-left: 31%;
-    margin-top: 13%;
+    margin-left: 35%;
+    margin-top: 11%;
 }
 .invalidEmail{
     color: red;
@@ -46,6 +46,9 @@
 }
 .fileInput{
     display: inline !important;
+    margin-left: 57px;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 .textColor{
@@ -53,4 +56,50 @@
 }
 .errorMessage{
     color: red;
+}
+.radio{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    justify-content: center;
+}
+.radioLable{
+    font-size: 13px;
+    font-family: inherit;
+    color: black;
+    font-weight: 600;
+}
+.radioContainer{
+    margin: 10px 20px 0 10px;
+    text-align: center;
+}
+
+.hide{
+    display: none;
+}
+.fileContainer{
+    border: 1px solid #009fd5;
+    height: 350px;
+    margin: 50px 50px 10px 50px;
+}
+
+.fileText{
+    margin: 51px 17px 10px 31px;
+color: black;
+font-family: auto;
+    font-size: 18px;
+}
+
+.sampleText{
+    text-align: start;
+    margin: 71px 17px 0 31px;
+
+    font-family: auto;
+    font-size: 18px;
+
+}
+
+.button{
+    margin-left: 60px;
+    margin-top: 20px;
 }

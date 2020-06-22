@@ -42,24 +42,25 @@ const useStyles = makeStyles({
 export default  function EmployeeTable(value) {
   const classes = useStyles();
   
-
   const [userData, setUserData] = useState([]);
-
+  if (value.refreshData === false) {
+    console.log(value.refreshData);
+    getUsers();
+  }
   useEffect(() => {
     const getData = async () => {
       setUserData(await getUsers());
     };
     getData();
 
-  }, [setUserData]);
+  }, []);
 
   const pushDataToRow = user => {
     rows.push(createData(user.id, user.name, user.appAvailability,user.bluetoothStatus, user.locationStatus, user.contactNo, user.employeeId, user.lastSeen))
   }
   
   var rows = [];
-  console.log("#######",userData);
-  console.log('@@@@@@@', value.activeTab)
+  
   if (userData.length > 1) {
     userData.forEach((user) => {
       if (value.activeTab === 'allEmp') {
@@ -71,7 +72,6 @@ export default  function EmployeeTable(value) {
    }
     })
   }
-  console.log("rows",rows);
 
   return (
     <TableContainer component={Paper}>

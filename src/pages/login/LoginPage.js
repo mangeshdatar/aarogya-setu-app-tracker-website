@@ -19,13 +19,11 @@ export default class LoginPage extends Component {
         }
     }
     contactSubmit(form) {
-        console.log("-----------",this.props.history)
         form.preventDefault();
         db.collection("adminWeb")
         .get()
         .then(querySnapshot => {
           const data = querySnapshot.docs.map(doc => doc.data());
-            console.log(data[0].username); 
             if (this.state.input === data[0].username && this.state.password === data[0].password) {
                     this.props.history.push('/dashboard')
             } else {
@@ -47,7 +45,6 @@ export default class LoginPage extends Component {
             this.setState({
                 input: event.target.value
             }); 
-            console.log(this.state.input)
         } else if (field === "password") {
             this.setState({
                 password: event.target.value
