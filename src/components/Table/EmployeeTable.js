@@ -8,7 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { getUsers } from '../../services/getUsers';
-
+import ReactTimeAgo from 'react-time-ago';
 
 
 const StyledTableCell = withStyles((theme) => ({
@@ -104,7 +104,7 @@ export default  function EmployeeTable(value) {
               <StyledTableCell align="left">{row.bluetoothStatus ? "ON" : "OFF"}</StyledTableCell>
               <StyledTableCell align="left">{row.locationStatus ? "ON": "OFF"}</StyledTableCell>
               <StyledTableCell align="left">{row.contactNo}</StyledTableCell>
-              <StyledTableCell align="left">{row.lastSeen}</StyledTableCell>
+              <StyledTableCell align="left"> <ReactTimeAgo date={row.lastSeen} /></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
