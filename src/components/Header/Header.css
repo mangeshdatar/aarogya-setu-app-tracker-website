@@ -12,21 +12,22 @@
 }
 
 .logo {
-  background: lightblue;
-  width: 255px;
+  background: #009fd5;
+  width: 316px;
   height: 70px;
+  position: absolute;
 }
 
 .inputcontainer {
   display: flex;
   align-items: center;
-  margin-left: 43px;
+  margin-left: 6%;
+  margin-top: 14px;
 }
 
 .input {
   height: 34px;
   width: 292px;
-  border-radius: 6px;
   padding-left: 37px;
   font-size: 14px;
   outline: none;
@@ -35,10 +36,17 @@
 .addButton {
   display: flex;
   align-items: center;
-  margin-left: 44%;
-  margin-right: 1%;
+  margin-left: 42%;
+  margin-top: 12px;
 }
 
+.uploadButton {
+  display: flex;
+  align-items: center;
+  margin-right: 1%;
+  margin-left: 0%;
+  margin-top: 12px;
+}
 .buttonicon {
   height: 40px;
   width: 163px;
@@ -47,6 +55,8 @@
 .logincontainer {
   display: flex;
   align-items: center;
+  padding-top: 17px;
+
 }
 
 .logout {
@@ -63,6 +73,11 @@
 
 .signOutLable {
   color: grey;
+    padding: 5px 0 0 10px;
+    position: absolute;
+    font-family: Avenir;
+    font-size: 16px;
+    font-weight: 400;
 }
 
 .vertical-line {
@@ -70,4 +85,17 @@
   margin-right: 14px;
   height: 36px;
   border: solid 1px #d4d7e0;
+}
+
+
+.appLogo{
+  padding: 8px 20px;
+}
+.appName{
+  padding: 21px 0;
+  height: 23px;
+  font-family: Avenir;
+  font-size: 17px;
+  font-weight: 900;
+  color: #ffffff;
 }

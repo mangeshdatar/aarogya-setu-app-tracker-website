@@ -6,25 +6,35 @@ import Header from '../../components/Header/Header';
 import AddEmployees from '../AddEmployees/AddEmployees'
 
 export default class Dashboard extends Component {
-    constructor (props) {
-        super(props);
-        this.state = { show: false, active: 'allEmp',
-      };
-    }
-  showModal = () => {
-      debugger
-        this.setState({ show: true });
+  constructor (props) {
+    super(props);
+    this.state = {
+      show: false,
+      active: 'allEmp',
+      uploadRecord:false
+    };
+    this.showModal = this.showModal.bind(this)
+    this.uploadExcelsheet = this.uploadExcelsheet.bind(this)
+
+  }
+   showModal() {
+    this.setState({ show: true });
         
-      };
+  }
     
   hideModal = () => {
-        debugger
-          this.setState({ show: false });
-      };
+    this.setState({
+      show: false,
+      uploadRecord: false});
+  };
    
+  uploadExcelsheet() {
+    this.showModal();
+    this.setState({
+      uploadRecord: true,
+    })
+  }
 
-    navigateToEmployee() {
-    }
 
   toggle(val){
     if (this.state.active === val) {
@@ -55,7 +65,7 @@ export default class Dashboard extends Component {
         return (
             <div>
                 <div className={opacity}>
-                    <Header  show={this.state.show} handleOpen={this.showModal}/>
+              <Header show={this.state.show} handleOpen={this.showModal} uploadRecord={this.uploadExcelsheet}/>
                 </div>
                 {/* eslint-disable-next-line */}
                 <div className="header"  className={opacity}>
@@ -78,7 +88,7 @@ export default class Dashboard extends Component {
                 </div>
                 </div>
                 <div>
-                    {this.state.show ? <AddEmployees handleClose={this.hideModal}/> : null}
+                    {this.state.show ? <AddEmployees uploadRecord={this.state.uploadRecord} handleClose={this.hideModal}/> : null}
               </div>
             </div>
         )

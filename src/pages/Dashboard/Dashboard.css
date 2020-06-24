@@ -24,20 +24,27 @@ height: 41px;
     margin-top: 2%;
 }
 .MuiTableCell-head {
-    color: rgba(0, 0, 0, 0.87);
     font-weight: 500;
     line-height: 1.5rem;
     width: 110px;
     height: 24px;
     object-fit: contain;
-    font-family: Avenir-Roman;
-    font-size: 15px;
+    font-family: Avenir-Roman !important;
+    font-size: 18px !important;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
     line-height: 1.33;
     letter-spacing: normal;
     color: #ffffff !important;
+}
+.MuiTableCell-body {
+    font-family: Avenir !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    line-height: 1.43 !important;
+    letter-spacing: normal !important;
+    color: #74798c !important;
 }
 
 .blackButton{

@@ -44,7 +44,6 @@ export default  function EmployeeTable(value) {
   
   const [userData, setUserData] = useState([]);
   if (value.refreshData === false) {
-    console.log(value.refreshData);
     getUsers();
   }
   useEffect(() => {
