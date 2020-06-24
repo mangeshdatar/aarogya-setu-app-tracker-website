@@ -36,7 +36,7 @@
 .addButton {
   display: flex;
   align-items: center;
-  margin-left: 42%;
+  margin-left: 70%;
   margin-top: 12px;
 }
 
@@ -44,7 +44,7 @@
   display: flex;
   align-items: center;
   margin-right: 1%;
-  margin-left: 0%;
+  margin-left: 29%;
   margin-top: 12px;
 }
 .buttonicon {

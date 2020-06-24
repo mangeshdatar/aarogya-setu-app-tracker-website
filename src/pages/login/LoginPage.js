@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import './LoginPage.css';
 import { db } from '../../services/firebase';
 import Alert from '@material-ui/lab/Alert';
-import logo from '../../assets/mobiquityLogo.png'
+import appLogo from '../../assets/appLogo.png';
 
 export default class LoginPage extends Component {
     constructor (props) {
@@ -78,7 +78,7 @@ export default class LoginPage extends Component {
         return (
             <div  className="loginContainer">
                 <div className="lableContainer">
-                    <div><img src={logo} width="350px" alt="" height="100px"/></div>
+                    <div><img src={appLogo} className="appLogo" alt="appLogo" /></div>
                     <div className="appLabel">Aarogya Setu App Tracker</div>
                     </div>
                 <form className="formcontainer"  noValidate autoComplete="off" onSubmit= {this.contactSubmit.bind(this)}>
