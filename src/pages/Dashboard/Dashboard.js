@@ -88,7 +88,7 @@ export default class Dashboard extends Component {
                     <div className='box-heading'>In-Active Employees</div>
                 </div>
                 </div>
-                    <EmployeeTable empRes={this.state.queryResult} isEmpty={this.state.isResAvailable} refreshData={this.state.show} activeTab={this.state.active}/>
+                    <EmployeeTable empRes={this.state.queryResult} refreshData={this.state.show} activeTab={this.state.active}/>
                 </div>
                 </div>
                 <div>
