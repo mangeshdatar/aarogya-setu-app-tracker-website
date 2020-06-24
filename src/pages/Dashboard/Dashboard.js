@@ -69,7 +69,7 @@ export default class Dashboard extends Component {
         return (
             <div>
                 <div className={opacity}>
-              <Header onSettingQuery={this.setSearchQuery} show={this.state.show} handleOpen={this.showModal} uploadRecord={this.uploadExcelsheet}/>
+              <Header searchHandler={this.setSearchQuery} show={this.state.show} handleOpen={this.showModal} uploadRecord={this.uploadExcelsheet}/>
                 </div>
                 {/* eslint-disable-next-line */}
                 <div className="header"  className={opacity}>

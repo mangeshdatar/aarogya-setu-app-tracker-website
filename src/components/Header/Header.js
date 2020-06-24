@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid';
 export default class Header extends Component {
     getSearchQuery(event) {
         let query =  event.target.value
-        this.props.onSettingQuery(query.toLocaleLowerCase());
+        this.props.searchHandler(query.toLocaleLowerCase());
     }
 
     render() {
