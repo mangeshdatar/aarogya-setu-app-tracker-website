@@ -11,11 +11,11 @@ import Dropzone from 'react-dropzone';
 
 import { storage } from '../../services/firebase';
 import readXlsxFile from 'read-excel-file'
-
+import downloadSampleFile from '../../assets/downloadSample.png';
+import uploadButton from '../../assets/uploadButton.png'
 export default class AddEmployees extends Component {
     constructor (props) {
         super(props);
-
         this.state = {
             name: '',
             empId: '',
@@ -29,38 +29,24 @@ export default class AddEmployees extends Component {
             emailValidation: false,
             contactValidation: false,
             userAdded: false,
-            file: "",
+            fileName: "",
             validFile: false,
-            singleRecord: true,
-            uploadRecord: false,
-            selectRecord: this.props.selectRecord,
-            uploadedRecord:false
+            uploadedRecord: false,
+            new_data: {}
 
         }
-      
-          this.uploadRecords = this.uploadRecords.bind(this)
+
+        this.postEmployeeData = this.postEmployeeData.bind(this)
     }
-    uploadRecords(e) {
-        if (e.target.value === "uploadRecord") {
-            this.setState({
-                uploadRecord: true,
-                singleRecord:false
-              }) 
-        } else {
-            this.setState({
-                uploadRecord: false,
-                singleRecord:true
-              }) 
-        }
-       
-      }
+
     contactSubmit(form) {
         form.preventDefault();
         if (!this.checkFileds()) {
             return
         }
+
         let myScope = this;
-           var dateTime = myScope.getTime();
+        var dateTime = myScope.getTime();
         db.collection("user").doc(newID.key).set({
             name: this.state.name,
             employeeId: this.state.empId,
@@ -208,15 +194,15 @@ export default class AddEmployees extends Component {
         }
     }
     uploadExcelSheet(uploadFile) {
-        if (uploadFile[0].name.includes("xlsx")) {
-            readXlsxFile(uploadFile[0]).then((rows) => {
+        this.setState({
+            new_data: Object.assign({}, uploadFile),
+            fileName:uploadFile[0].name
+        });
+        if (this.state.new_data[0].name.includes("xlsx")) {
+            readXlsxFile(this.state.new_data[0]).then((rows) => {
                 if (rows[0][0] === "Empolyee Id" && rows[0][1] === "Employee Name" && rows[0][2] === "Employee Email" && rows[0][3] === "Employee Contact") {
-                    let skipFirstColomn = 0;
-                    rows.forEach((row) => {
-                        skipFirstColomn++;
-                        if (skipFirstColomn >= 2) {
-                            this.insertEmployeeData(row)
-                        }
+                    this.setState({
+                        validFile: false
                     })
                 } else {
                     this.setState({
@@ -236,8 +222,24 @@ export default class AddEmployees extends Component {
         }).catch((error) => {
         })
     }
+
+    postEmployeeData() {
+        if (this.state.new_data[0].name.includes("xlsx")) {
+            readXlsxFile(this.state.new_data[0]).then((rows) => {
+                if (rows[0][0] === "Empolyee Id" && rows[0][1] === "Employee Name" && rows[0][2] === "Employee Email" && rows[0][3] === "Employee Contact") {
+                    let skipFirstColomn = 0;
+                    rows.forEach((row) => {
+                        skipFirstColomn++;
+                        if (skipFirstColomn >= 2) {
+                            this.insertEmployeeData(row)
+                        }
+                    })
+                }
+            })
+        }
+    }
     insertEmployeeData(data) {
-     debugger
+        
         var dateTime = this.getTime();
         let myScope = this;
         db.collection("user").doc(newID.key).set({
@@ -257,7 +259,6 @@ export default class AddEmployees extends Component {
                 uploadedRecord: true,
                 validFile: false
             });
-            debugger
             const templateParams = {
                 userName: data[1],
                 senderEmail: config.senderEmail,
@@ -276,37 +277,22 @@ export default class AddEmployees extends Component {
             )
 
             setTimeout(() => {
-            myScope.props.handleClose();
-                
-            },1000)
+                myScope.props.handleClose();
+
+            }, 1000)
         }).catch(function (error) {
         });
     }
-   
-    render() {
-        const {selectRecord} = this.state
 
+    render() {
         return (
             <div>
-                <form className="formContainer" id="form" noValidate autoComplete="off" onSubmit={e => this.contactSubmit(e)}>
+                <form className={this.props.uploadRecord ? "uploadWidth":"employeeWidth"} id="form" noValidate autoComplete="off" onSubmit={e => this.contactSubmit(e)}>
                     <span className="crossIcon" onClick={e => this.props.handleClose()}>  <img className="crossImg" src={closeIcon} width="40px" height="40px" alt="" />  </span>
-                    
-                    
-                    <div className="radio">
-                        <label className="radioContainer">
-                            <input type="radio" checked={selectRecord === "singleRecord"} checked={this.state.singleRecord} onClick={this.uploadRecords} value="singleRecord"  />
-                            <span className="radioLable"> Add One Employee </span>
-                        </label>
-                        <label className="radioContainer">
-                            <input type="radio" checked={selectRecord === "uploadRecord"} checked={this.state.uploadRecord} onClick={this.uploadRecords} value="uploadRecord"  />
-                            <span className="radioLable"> Upload Employee Excelsheet</span>
-                        </label>
-                    </div>
-                   
-                    <div className={this.state.uploadRecord ? "hide" : null}>
-                          <div className="inputContainer addPadding">
-                                <TextField onBlur={e => this.inputFiled(e, "empId")} fullWidth color="primary" id="empId" onChange={e => this.inputFiled(e, "empId")} label="Employee Id*" variant="outlined" />
-                            </div>
+                    <div className={this.props.uploadRecord ? "hide" : null}>
+                        <div className="inputContainer addPadding">
+                            <TextField onBlur={e => this.inputFiled(e, "empId")} fullWidth color="primary" id="empId" onChange={e => this.inputFiled(e, "empId")} label="Employee Id*" variant="outlined" />
+                        </div>
                         {this.state.empIdValidation ?
                             <div className="invalidEmail">Invalid Employee Id</div>
                             : null}
@@ -337,49 +323,62 @@ export default class AddEmployees extends Component {
                             <Button type="submit" fullWidth variant="contained" color="primary" disabled={this.state.button}>
                                 Add Employee
                         </Button>
-
                         </div>
-                    
-                    </div>
-                    <div className={this.state.singleRecord ? "hide" : null}>
-                        <div className="fileContainer">
-                            <div className="textColor">
-                       <div  className="sampleText"> 1. Download Sample Excelsheet</div>
-        <div>
-                                    <button className="button" onClick={() => this.downloadFile()}>Download</button>
-                                    </div>
-                    </div>
 
-                    <Dropzone onDrop={acceptedFiles => this.uploadExcelSheet(acceptedFiles)}>
-                        {({ getRootProps, getInputProps }) => (
-                            <section>
-                                <div {...getRootProps()}>
-                                    <p className="fileText">2. Drag excelsheet files here, or click to select files</p>
-                                    <input {...getInputProps()} className="fileInput" />
+                    </div>
+                    <div className={this.props.uploadRecord ? null : "hide"}>
+                        <div className="fileContainer">
+                            <div className="dragFile">
+                            <Dropzone onDrop={acceptedFiles => this.uploadExcelSheet(acceptedFiles)}>
+                                {({ getRootProps, getInputProps }) => (
+                                    <section>
+                                        <div {...getRootProps()}>
+                                            <div className="fileText">
+                                               <div> Drag and drop Excel file here</div>
+                                               <div> or</div>
+                                               <div style={{textDecoration:"underline"}} > Select it</div>
+                                                </div>
+                                            <input {...getInputProps()} className="fileInput" placeholder="select" />
 
                                         </div>
-                            </section>
-                        )}
-                    </Dropzone>
-                    <div>
-                        {
-                            this.state.validFile ?
-                                <Alert severity="error">Please upload valid Excelsheet File</Alert>
-                                : null
-                        }
+                                    </section>
+                                )}
+                                </Dropzone>
+                            </div>
+                            <span className="fileName">
 
-                    </div>
-                    <span className="textColor">
-                        {this.state.file}
-                        </span>
+                                {this.state.fileName.length > 1 && !this.state.validFile  ?
+                                    <Alert severity="info">{this.state.fileName}</Alert>
+
+                                : null}
+                            </span>
+                            <div className="uploadBtn">
+                                <img src={uploadButton} onClick={()=> this.postEmployeeData()} width="320px" height="45px" />
+                            </div>
+                          
+                            <div className="downloadBtn">
+                                <img width="230px" height="25px" onClick={() => this.downloadFile()} src={downloadSampleFile} />
+
+                            </div>
+
+
+                            <div style={{marginTop:"30px"}}>
+                                {
+                                    this.state.validFile ?
+                                        <Alert severity="error">Please upload valid Excelsheet File</Alert>
+                                        : null
+                                }
+
+                            </div>
+                         
                         </div>
                         <div className="validUser">
-                        {this.state.uploadedRecord ?
+                            {this.state.uploadedRecord ?
 
-                            <Alert severity="success">Uploaded Employee Record's Successfully</Alert> : null
-                        }
-                    </div>
+                                <Alert severity="success">Uploaded Employee Record's Successfully</Alert> : null
+                            }
                         </div>
+                    </div>
                     <div className="validUser">
                         {this.state.userAdded ?
 

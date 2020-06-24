@@ -1,5 +1,4 @@
-.formContainer{
- 
+.employeeWidth{
   width: 421px;
     height: 540px;
     border-radius: 13px;
@@ -10,6 +9,17 @@
     margin-left: 35%;
     margin-top: 11%;
 }
+.uploadWidth{
+    width: 421px;
+      height: 440px;
+      border-radius: 13px;
+      background-color: #ffffff;
+      margin-top: -60vh;
+      position: fixed;
+      top: 0;
+      margin-left: 35%;
+      margin-top: 11%;
+  }
 .invalidEmail{
     color: red;
     text-align: center;
@@ -44,12 +54,7 @@
     right: 3;
     position: fixed;
 }
-.fileInput{
-    display: inline !important;
-    margin-left: 57px;
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
+
 
 .textColor{
     color: black;
@@ -78,16 +83,14 @@
     display: none;
 }
 .fileContainer{
-    border: 1px solid #009fd5;
+    /* border: 1px dotted #009fd5; */
     height: 350px;
     margin: 50px 50px 10px 50px;
 }
 
 .fileText{
-    margin: 51px 17px 10px 31px;
-color: black;
-font-family: auto;
-    font-size: 18px;
+    padding: 25px 0;
+
 }
 
 .sampleText{
@@ -101,5 +104,26 @@ font-family: auto;
 
 .button{
     margin-left: 60px;
+    margin-top: 20px;
+}
+.dragFile{
+  
+  font-family: Avenir;
+  font-size: 20px; 
+  letter-spacing: normal;
+  text-align: center;
+  color: #009fd5;
+    border: dashed 1px;
+    font-weight: 500;
+}
+
+.uploadBtn{
+    margin-top: 45px;
+}
+.downloadBtn{
+    margin-top:43px ;
+    text-align: center;
+}
+.fileName{
     margin-top: 20px;
 }

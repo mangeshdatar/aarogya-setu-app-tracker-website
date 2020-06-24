@@ -1,36 +1,59 @@
 import React, { Component } from 'react'
 import './Header.css';
-import mobiquityLogo from '../../assets/mobiquityLogo.png';
-import addButton from '../../assets/addButton.png';
+import appLogo from '../../assets/appLogo.png';
+import addButton from '../../assets/addEmployee.png';
+import uploadRecords from '../../assets/uploadRecords.png'
 import logoutButton from '../../assets/logout.png';
+import Grid from '@material-ui/core/Grid';
+
 export default class Header extends Component {
-    state = {
-        show: false
-      };
+  
 
     render() {
         return (
-            <div className='header-container'>
-                <span className='logo'>
-                    <img src={mobiquityLogo} alt="" width="100%"/>
-                </span>
-                <span className='inputcontainer'>
-               <input className="input" placeholder="Search Employee"/>
-                </span>
+            <Grid container >
 
-                <span className="addButton" onClick={e => this.props.handleOpen()}>
-                    <img className="buttonicon" alt="" src={addButton} width="100%"/>
-                </span>
-                <div className="vertical-line"></div>
-                <div className="logincontainer">
-                    <span>
-                        <img className="logout" alt="" src={logoutButton} width="100%" />
+                <div className='header-container'>
+                    <Grid item xs={3} >
+
+                        <span className='logo'>
+                            <img src={appLogo} className="appLogo" alt="" height="50px" width="50px" />
+                            <span className="appName">Aarogya Setu App Tracker</span>
                         </span>
+                    </Grid>
+                    <Grid item xs={3}>
+
+                        <span className='inputcontainer'>
+                            <input className="input" placeholder="Search Employee" />
+                        </span>
+                    </Grid>
+                    <Grid item xs={3}>
+
+                    <span className="addButton" onClick={e => this.props.uploadRecord(true)}>
+                        <img className="buttonicon" alt="" src={uploadRecords} width="100%" />
+                    </span>
+                    </Grid>
+                    <Grid item xs={2}>
+
+                    <span className="uploadButton" onClick={e => this.props.handleOpen(false)}>
+                        <img className="buttonicon" alt="" src={addButton} width="100%" />
+                        </span>
+                        </Grid>
+
+                    <div className="vertical-line"></div>
+                    <Grid item xs={1}   alignItems="flex-end">
+
+                    <div className="logincontainer">
+                        <span>
+                                <img className="logout" alt="" src={logoutButton} width="100%" />
+                                <span className="signOutLable">Sign Out</span>
+
+                        </span>
+                    </div>
+                  
+                        </Grid>
                 </div>
-                <div className="sign-out-container">
-                <span className="signOutLable">Sign Out</span>
-                </div>
-            </div>
+            </Grid>
         )
     }
 }
