@@ -7,7 +7,11 @@ import logoutButton from '../../assets/logout.png';
 import Grid from '@material-ui/core/Grid';
 
 export default class Header extends Component {
-  
+    getSearchQuery(event) {
+        let temp = '';
+        temp = temp+ event.target.value
+        this.props.onSettingQuery(temp.toLocaleLowerCase());
+    }
 
     render() {
         return (
@@ -24,7 +28,7 @@ export default class Header extends Component {
                     <Grid item xs={3}>
 
                         <span className='inputcontainer'>
-                            <input className="input" placeholder="Search Employee" />
+                            <input className="input" placeholder="Search Employee" id="search" onChange={e => this.getSearchQuery(e)}/>
                         </span>
                     </Grid>
                     <Grid item xs={3}>

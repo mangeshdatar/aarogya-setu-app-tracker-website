@@ -11,7 +11,8 @@ export default class Dashboard extends Component {
     this.state = {
       show: false,
       active: 'allEmp',
-      uploadRecord:false
+      uploadRecord: false,
+      queryResult: '',
     };
     this.showModal = this.showModal.bind(this)
     this.uploadExcelsheet = this.uploadExcelsheet.bind(this)
@@ -57,15 +58,18 @@ export default class Dashboard extends Component {
     }
     return "#8f8d8d";
   }
-    
+
+  setSearchQuery = (queryRes ) => {
+  this.setState({
+    queryResult: queryRes,
+  })
+}
     render() {
         let opacity = this.state.show ? "blackButton" : "whiteButton";
-
-
         return (
             <div>
                 <div className={opacity}>
-              <Header show={this.state.show} handleOpen={this.showModal} uploadRecord={this.uploadExcelsheet}/>
+              <Header onSettingQuery={this.setSearchQuery} show={this.state.show} handleOpen={this.showModal} uploadRecord={this.uploadExcelsheet}/>
                 </div>
                 {/* eslint-disable-next-line */}
                 <div className="header"  className={opacity}>
@@ -84,7 +88,7 @@ export default class Dashboard extends Component {
                     <div className='box-heading'>In-Active Employees</div>
                 </div>
                 </div>
-                    <EmployeeTable refreshData={this.state.show} activeTab={this.state.active}/>
+                    <EmployeeTable empRes={this.state.queryResult} isEmpty={this.state.isResAvailable} refreshData={this.state.show} activeTab={this.state.active}/>
                 </div>
                 </div>
                 <div>

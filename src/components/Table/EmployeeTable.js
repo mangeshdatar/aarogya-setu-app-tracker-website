@@ -37,31 +37,53 @@ const useStyles = makeStyles({
   table: {
     minWidth: 700,
   },
+
+  noRecord: {
+    minWidth: 700,
+    marginTop: 10,
+    marginBottom: 10,
+    textAlign: 'center'
+  }
 });
 
 export default  function EmployeeTable(value) {
   const classes = useStyles();
+  let filterdUserData =[];
+  let isEmpty = false
   
   const [userData, setUserData] = useState([]);
   if (value.refreshData === false) {
     getUsers();
   }
   useEffect(() => {
-    const getData = async () => {
+    const getData = async () => { 
       setUserData(await getUsers());
     };
     getData();
 
   }, []);
 
+    
+    if(value.empRes.length> 0) {
+      userData.forEach(user =>{
+        const empName = user.name.toLowerCase();
+        if( value.empRes === empName.substr(0, value.empRes.length)) {
+            filterdUserData.push(user)
+        } else {
+          isEmpty = true
+        }
+    })
+    } else {
+      filterdUserData = userData;
+    }
   const pushDataToRow = user => {
     rows.push(createData(user.id, user.name, user.appAvailability,user.bluetoothStatus, user.locationStatus, user.contactNo, user.employeeId, user.lastSeen))
   }
   
   var rows = [];
   
-  if (userData.length > 1) {
-    userData.forEach((user) => {
+  if (filterdUserData.length >= 1) {
+    filterdUserData.forEach((user) => {
       if (value.activeTab === 'allEmp') {
         pushDataToRow(user);
        } else if(value.activeTab === 'activeEmp' && user.appAvailability) {
@@ -87,6 +109,7 @@ export default  function EmployeeTable(value) {
             <StyledTableCell align="left">Last Sync</StyledTableCell>
           </TableRow>
         </TableHead>
+
         <TableBody>
           {rows.map((row, index) => (
             <StyledTableRow key={row.id}>
@@ -107,7 +130,12 @@ export default  function EmployeeTable(value) {
             </StyledTableRow>
           ))}
         </TableBody>
+
       </Table>
+      <div className={filterdUserData.length ===0 && isEmpty? classes.noRecord : ''}>{filterdUserData.length ===0 && isEmpty? "No record available" : ""}</div>
+
     </TableContainer>
+
+
   );
 }
