@@ -1,0 +1,48 @@
+.crossimg{
+    right: 20px;
+    position: fixed;
+}
+.aboutUsContainer{
+    height: 238px;
+    width: 375px;
+    margin-top: 16px;
+    border-radius: 13px;
+    background-color: #ffffff;
+}
+.videoContainer{
+    height: 242px;
+    width: 375px;
+}
+iframe{
+    height: 238px;
+    width: 377px;
+}
+
+.aboutUsLable{
+    padding-top: 55px;
+
+    font-family: Avenir-Roman;
+  font-size: 22px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #009fd5;
+  padding: 55px 10px;
+    text-shadow: 1px 1px 0px;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.reachOutLable{
+    font-family: Avenir;
+    font-size: 15px;
+    text-align: end;
+    text-decoration: underline;
+    padding-right: 6px;
+    text-shadow: none;
+
+}

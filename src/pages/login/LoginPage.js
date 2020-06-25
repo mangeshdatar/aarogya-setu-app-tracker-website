@@ -7,6 +7,8 @@ import Alert from "@material-ui/lab/Alert";
 import appLogo from "../../assets/loginLogo.jpg";
 import howItWorks from '../../assets/howItWork.png'
 import aboutUs from '../../assets/aboutUsLogo.png'
+import AboutUsAndWork from "../AboutUsAndWork/AboutUsAndWork";
+import blinkSound from '../../assets/swiftly.mp3'
 export default class LoginPage extends Component {
     constructor (props) {
         super(props);
@@ -21,8 +23,11 @@ export default class LoginPage extends Component {
             contactValidation: false,
             contact: "",
             newUserBtn: true,
-            userAdded:false
+            userAdded: false,
+            show: false,
+            aboutUs:false
         };
+
     }
     contactSubmit(form) {
         form.preventDefault();
@@ -129,9 +134,39 @@ export default class LoginPage extends Component {
             });
         },2000);
     }
+
+    showModal() {
+        this.setState({ show: true });
+            
+      }
+        
+      hideModal = () => {
+        this.setState({
+          show: false,
+          });
+      };
+    
+    howItWorks(checkModalView) {
+        var  audio = new Audio(blinkSound)
+        audio.play();
+        if (checkModalView==true) {
+            this.setState({
+                aboutUs:true
+            }) 
+        } else {
+            this.setState({
+                aboutUs:false
+            }) 
+        }
+        this.showModal();
+    }
     render() {
+        let opacity = this.state.show ? "blackButton" : "whiteButton";
+
         return (
             <div className="loginContainer">
+                            <div className={opacity}>
+
                 <div className="lableContainer">
                     <div>
                         <img src={appLogo} className="applogo" alt="appLogo" />
@@ -248,12 +283,17 @@ export default class LoginPage extends Component {
                     ) : null}
                 </div>
 
-                <div className="footer">
-                    < span><img src={howItWorks} width="206px" height="86px"/> </span>
-                    < span><img src={aboutUs} width="206px" height="86px"/> </span>
+                    <div className={!this.state.show ? "footer": "footerMargin"}>
+                    < span onClick={this.howItWorks.bind(this,false)}><img src={howItWorks} width="206px" height="86px"/> </span>
+                    < span onClick={this.howItWorks.bind(this,true)}><img src={aboutUs} width="206px" height="86px"/> </span>
 
+                    </div>
+                   
                 </div>
-            </div>
+                {this.state.show ?
+                   <div className="aboutContainer"> <AboutUsAndWork handleClose={this.hideModal} modalView={this.state.aboutUs} /> </div>: null}
+              
+                </div>
         );
     }
 }
