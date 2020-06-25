@@ -41,8 +41,14 @@ iframe{
     font-family: Avenir;
     font-size: 15px;
     text-align: end;
-    text-decoration: underline;
     padding-right: 6px;
     text-shadow: none;
+}
 
+.namesLable{
+    font-family: Avenir;
+    font-size: 12px;
+    text-align: end;
+    text-decoration: underline;
+    padding-right: 6px;
 }
