@@ -15,12 +15,13 @@
 }
 
 .formcontainer {
-    border-radius: 13px;
+    border-radius: 4px;
     margin: auto;
     margin-top: 52px;
     background-color: #ffffff;
     width: 487px;
-    height: 334px;
+    height: 385px;
+   
 }
 .invalidEmail {
     color: red;
@@ -60,6 +61,7 @@
     justify-content: center;
     margin: auto;
     margin-top: 10px;
+   
 }
 .MuiButton-containedPrimary {
     color: white !important;
@@ -97,3 +99,61 @@
     margin-top: 0px;
     justify-content: center;
 }
+
+.newUserLable{
+height: 30px;
+  font-family: Avenir-Roman;
+  font-size: 22px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #009fd5;
+}
+
+.signUpLabel{
+    font-family: Avenir;
+    font-weight: 500;
+    text-decoration: underline;
+}
+.newUserContainer{
+    padding-top: 50px;
+    position: relative;
+    animation: myfirst 5s 1;
+    animation-direction: alternate;
+}
+.loginFormContainer{
+    position: relative;
+    animation: myfirst 5s 1;
+    animation-direction: alternate; 
+}
+.singUpBtn{
+    width: 60%;
+    margin: 19px auto;
+}
+.userAdded{
+    margin: 10px auto;
+    padding: 18px;
+}
+
+@keyframes myfirst {
+    0%   {opacity: 0.2; left: -80px; top: 0px;}
+    25%  {opacity: 1; left: 0px; top: 0px;}
+   
+  }
+
+  .footer{
+    bottom: 0px;
+    position: fixed;
+    right: 0;
+    animation: footer 5s 1;
+    animation-direction: alternate;
+  }
+
+  @keyframes footer {
+    0%   {opacity: 0.2; bottom: -20px; right: 0px;}
+    25%  {opacity: 1; bottom: 0px; right: 0px;}
+   
+  }
