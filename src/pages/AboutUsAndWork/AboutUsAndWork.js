@@ -16,9 +16,18 @@ export default class AboutUsAndWork extends Component {
                         <div className="aboutUsLable">
                             <span> We're freelance developer's ,</span> 
                             <span>We always contribute to open source project's.</span>
-                            <div  className="reachOutLable" onClick={this.aboutUs}>
-Reach Out to Me!!!
-</div>
+                            <div  className="reachOutLable">
+                                Reach Out to Us!!!
+                            </div>
+                            <div  className="namesLable" onClick={this.aboutUs}>
+                            Mangesh Datar
+                            </div>
+                            <div  className="namesLable">
+                            Anjali Kapare
+                            </div>
+                            <div  className="namesLable">
+                            Suchita Bhosale
+                            </div>
                         </div> :
                         <div className="videoContainer">
                         <iframe src='https://www.youtube.com/embed/E7wJTI-1dvQ'
