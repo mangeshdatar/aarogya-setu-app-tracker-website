@@ -12,7 +12,10 @@ import Dropzone from 'react-dropzone';
 import { storage } from '../../services/firebase';
 import readXlsxFile from 'read-excel-file'
 import downloadSampleFile from '../../assets/downloadSample.png';
-import uploadButton from '../../assets/uploadButton.png'
+import uploadButton from '../../assets/uploadButton.png';
+import {firebaseApp} from '../../services/firebase'
+
+
 export default class AddEmployees extends Component {
     constructor (props) {
         super(props);
@@ -36,7 +39,9 @@ export default class AddEmployees extends Component {
 
         }
 
-        this.postEmployeeData = this.postEmployeeData.bind(this)
+        this.postEmployeeData = this.postEmployeeData.bind(this);
+        this.insertEmployeeData = this.insertEmployeeData.bind(this)
+
     }
 
     contactSubmit(form) {
@@ -226,10 +231,12 @@ export default class AddEmployees extends Component {
     postEmployeeData() {
         if (this.state.new_data[0].name.includes("xlsx")) {
             readXlsxFile(this.state.new_data[0]).then((rows) => {
+                console.log(rows)
                 if (rows[0][0] === "Empolyee Id" && rows[0][1] === "Employee Name" && rows[0][2] === "Employee Email" && rows[0][3] === "Employee Contact") {
                     let skipFirstColomn = 0;
                     rows.forEach((row) => {
                         skipFirstColomn++;
+                        
                         if (skipFirstColomn >= 2) {
                             this.insertEmployeeData(row)
                         }
@@ -239,10 +246,13 @@ export default class AddEmployees extends Component {
         }
     }
     insertEmployeeData(data) {
-        
+        console.log("called");
+        var fir = firebaseApp
+        const newID1 = fir.database().ref().push()
+
         var dateTime = this.getTime();
         let myScope = this;
-        db.collection("user").doc(newID.key).set({
+        db.collection("user").doc(newID1.key).set({
             employeeId: data[0],
             name: data[1],
             email: data[2],
@@ -259,6 +269,7 @@ export default class AddEmployees extends Component {
                 uploadedRecord: true,
                 validFile: false
             });
+            debugger
             const templateParams = {
                 userName: data[1],
                 senderEmail: config.senderEmail,
@@ -276,10 +287,10 @@ export default class AddEmployees extends Component {
                 config.emailUserId,
             )
 
-            setTimeout(() => {
-                myScope.props.handleClose();
+            // setTimeout(() => {
+            //     myScope.props.handleClose();
 
-            }, 1000)
+            // }, 1000)
         }).catch(function (error) {
         });
     }
