@@ -27,7 +27,7 @@ export default class Header extends Component {
                     <Grid item xs={3}>
 
                         <span className='inputcontainer'>
-                            <input className="input" placeholder="Search Employee" id="search" autocomplete="off" onChange={e => this.getSearchQuery(e)}/>
+                            <input className="input" placeholder="Search Employee" id="search"  autocomplete="off" onChange={e => this.getSearchQuery(e)}/>
                         </span>
                     </Grid>
                     <Grid item xs={3}>
