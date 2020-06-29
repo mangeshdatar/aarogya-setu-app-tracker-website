@@ -52,7 +52,14 @@ export default class AddEmployees extends Component {
 
         let myScope = this;
         var dateTime = myScope.getTime();
-        db.collection("user").doc(newID.key).set({
+        db.collection("users").doc(newID.key).set({
+            email: this.state.email,
+            password: newID.key,
+            id: newID.key,
+        }).then(() => {
+            console.log("userAdded..")
+        })
+        db.collection("userInfo").doc(newID.key).set({
             name: this.state.name,
             employeeId: this.state.empId,
             email: this.state.email,
