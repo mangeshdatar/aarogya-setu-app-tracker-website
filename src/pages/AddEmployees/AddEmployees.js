@@ -269,7 +269,7 @@ export default class AddEmployees extends Component {
             bluetoothStatus: false,
             locationStatus: false,
             devicePlatform: '',
-            id: newID.key,
+            id: newID1.key,
             lastSeen: dateTime
         }).then(function () {
             myScope.setState({
@@ -288,11 +288,12 @@ export default class AddEmployees extends Component {
                 }
             }
 
-            myScope.sendEmail(
-                config.emailTemplateId,
-                templateParams,
-                config.emailUserId,
-            )
+            /*  Commented for Unnecessary calls */
+            // myScope.sendEmail(
+            //     config.emailTemplateId,
+            //     templateParams,
+            //     config.emailUserId,
+            // )
 
             // setTimeout(() => {
             //     myScope.props.handleClose();
