@@ -36,6 +36,8 @@ export default class Header extends Component {
 
                         <span className="addButton" onClick={e => this.props.gotoHome()}>
                             Home
+
+                            
                     </span>
                     </Grid>
                     <Grid item xs={3}>
