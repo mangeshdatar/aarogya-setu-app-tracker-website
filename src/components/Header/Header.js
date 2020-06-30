@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import './Header.css';
 import appLogo from '../../assets/appLogo.png';
-import addButton from '../../assets/addEmployee.png';
-import uploadRecords from '../../assets/uploadRecords.png'
 import logoutButton from '../../assets/logout.png';
 import Grid from '@material-ui/core/Grid';
 
@@ -37,7 +35,7 @@ export default class Header extends Component {
                         <span className="addButton" onClick={e => this.props.gotoHome()}>
                             Home
 
-                            
+
                     </span>
                     </Grid>
                     <Grid item xs={3}>
