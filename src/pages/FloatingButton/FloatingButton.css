@@ -1,0 +1,44 @@
+.MuiSpeedDial-directionUp {
+    flex-direction: column ;
+}
+
+.floatingBtn{
+    background: white;
+    color: black;
+    width: 200px;
+    height: 46px;
+    margin-bottom: 30px;
+    margin-left: 10px;
+    text-align: center;
+    border-radius: 48px;
+    padding-top: 10px;
+    box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
+
+}
+
+.btn {
+    display: inline ;
+    margin-left: -5px;
+    position: absolute;
+    padding-top: -5px;
+    margin-top: -10px;
+}
+.MuiSpeedDial-directionRight .MuiSpeedDial-actions {
+    margin-left: -9px !important;
+   
+}
+
+.label{
+    font-family: Avenir;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.43;
+    color: #74798c;
+    right: 12px;
+    top: 6px;
+    position: relative;
+}
+
+.MuiFab-primary {
+    background-color: #009fd5 !important;
+}
