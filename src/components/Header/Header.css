@@ -1,5 +1,5 @@
 .header-container {
-  background: white;
+  background: #009fd5;
   display: flex;
   flex-direction: row;
   top: 0;
@@ -37,7 +37,12 @@
   display: flex;
   align-items: center;
   margin-left: 70%;
-  margin-top: 12px;
+  margin-top: 24px;
+  height: 24px;
+  object-fit: contain;
+  font-family: Avenir-Roman !important;
+  font-size: 19px;
+  font-weight: normal;
 }
 
 .uploadButton {
@@ -45,7 +50,12 @@
   align-items: center;
   margin-right: 1%;
   margin-left: 29%;
-  margin-top: 12px;
+  margin-top: 23px;
+  height: 24px;
+    object-fit: contain;
+    font-family: Avenir-Roman !important;
+    font-size: 19px;
+    font-weight: normal;
 }
 .buttonicon {
   height: 40px;
@@ -72,7 +82,7 @@
 }
 
 .signOutLable {
-  color: grey;
+  color: white;
     padding: 5px 0 0 10px;
     position: absolute;
     font-family: Avenir;
@@ -84,7 +94,7 @@
   margin-top: 16px;
   margin-right: 14px;
   height: 36px;
-  border: solid 1px #d4d7e0;
+  border: solid 1px white;
 }
 
 
