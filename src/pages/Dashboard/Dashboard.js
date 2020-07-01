@@ -5,6 +5,7 @@ import './Dashboard.css';
 import Header from '../../components/Header/Header';
 import AddEmployees from '../AddEmployees/AddEmployees'
 import FloatingButton from '../FloatingButton/FloatingButton';
+import OfficeSeats from '../OfficeSeats/OfficeSeats'
 
 export default class Dashboard extends Component {
   constructor (props) {
@@ -117,8 +118,8 @@ export default class Dashboard extends Component {
                      {this.state.show ? <AddEmployees uploadRecord={this.state.uploadRecord} handleClose={this.hideModal}/> : null}
                </div>
                 </div> :
-                <div style={{color:'black'}}>
-                 showSeatsAllocation
+                <div >
+                 <OfficeSeats/>
                 </div>}
 
             </div>
