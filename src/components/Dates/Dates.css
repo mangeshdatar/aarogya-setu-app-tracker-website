@@ -1,0 +1,62 @@
+.dateContainer{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-left: 7px;
+    color: grey;
+
+}
+
+.MuiCardContent-root:visited{
+    background: lightblue !important;
+}
+.MuiCardContent-root{
+    width: 61px;
+    height: 81px;
+    padding: 12px !important;
+}
+
+.dateLabel{
+    font-size: 35px;
+    font-family: Avenir-Roman;
+    padding: 0;
+    margin: 0;
+}
+
+.monthLabel{
+    font-family: Avenir-Roman;
+    font-size: 11px;
+}
+.dayLabel{
+    font-family: Avenir-Roman;
+    font-size: 14px;
+    
+}
+.nextWeekLable{
+    color: white;
+    font-family: Avenir-Roman;
+    font-size: 20px;
+    display: grid;
+    left: -6px;
+    position: relative;
+}
+
+.nextWeekLable .MuiCardContent-root{
+background: black !important;
+}
+
+
+.nextLableContainer 
+    .MuiCardContent-root{
+        background: #009fd5 !important;
+        }
+
+.selected{
+    color: black !important;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-left: 7px;
+}
+            
+            

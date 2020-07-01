@@ -1,0 +1,25 @@
+.officeSeatsContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dateView{
+    display: flex;
+    justify-content: center;
+}
+
+.tableView{
+    display: flex;
+    justify-content: center;
+    width: 58%;
+    margin: auto;
+    margin-top: 60px;
+    
+}
+
+@keyframes footer {
+    0%   {opacity: 0.2;  margin-left: 30%;}
+    25%  {opacity: 1;  margin-left: 21%;}
+   
+  }
