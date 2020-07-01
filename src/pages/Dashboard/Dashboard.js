@@ -77,13 +77,21 @@ export default class Dashboard extends Component {
       homePage:false
     })
   }
+
+  onLogout = () => {
+    this.props.history.push("/");
+  }
  
     render() {
         let opacity = this.state.show ? "blackButton" : "whiteButton";
         return (
             <div>
                 <div className={opacity}>
-              <Header searchHandler={this.setSearchQuery} show={this.state.show} gotoHome={this.showHomePage} gotoSeatAvailability={this.showSeatsAllocation}/>
+              <Header searchHandler={this.setSearchQuery} 
+              show={this.state.show} 
+              gotoHome={this.showHomePage} 
+              gotoSeatAvailability={this.showSeatsAllocation}
+              logoutHandler={this.onLogout}/>
                 </div>
             {/* eslint-disable-next-line */}
             <div>

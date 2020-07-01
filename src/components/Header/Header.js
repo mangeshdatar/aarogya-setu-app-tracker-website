@@ -49,7 +49,7 @@ export default class Header extends Component {
                     <Grid item xs={1}   alignItems="flex-end">
 
                     <div className="logincontainer">
-                        <span>
+                        <span onClick={e => this.props.logoutHandler()}>
                                 <img className="logout" alt="" src={logoutButton} width="100%" />
                                 <span className="signOutLable">Sign Out</span>
 
