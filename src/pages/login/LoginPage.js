@@ -149,7 +149,7 @@ export default class LoginPage extends Component {
     howItWorks(checkModalView) {
         var  audio = new Audio(blinkSound)
         audio.play();
-        if (checkModalView==true) {
+        if (checkModalView === true) {
             this.setState({
                 aboutUs:true
             }) 
@@ -181,7 +181,6 @@ export default class LoginPage extends Component {
                             onSubmit={this.contactSubmit.bind(this)}
                         >
                             <div className="loginFormContainer">
-                            <h1 className="signInLable">Sign In</h1>
                             <div className="inputContainer">
                                 <TextField
                                     onBlur={this.checkEmailFormat.bind(this)}
@@ -284,8 +283,8 @@ export default class LoginPage extends Component {
                 </div>
 
                     <div className={!this.state.show ? "footer": "footerMargin"}>
-                    < span onClick={this.howItWorks.bind(this,false)}><img src={howItWorks} width="206px" height="86px"/> </span>
-                    < span onClick={this.howItWorks.bind(this,true)}><img src={aboutUs} width="206px" height="86px"/> </span>
+                    < span onClick={this.howItWorks.bind(this,false)}><img src={howItWorks} alt="" width="206px" height="86px"/> </span>
+                    < span onClick={this.howItWorks.bind(this,true)}><img src={aboutUs} alt="" width="206px" height="86px"/> </span>
 
                     </div>
                    

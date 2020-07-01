@@ -372,11 +372,11 @@ export default class AddEmployees extends Component {
                                 : null}
                             </span>
                             <div className="uploadBtn">
-                                <img src={uploadButton} onClick={()=> this.postEmployeeData()} width="320px" height="45px" />
+                                <img src={uploadButton} alt="" onClick={()=> this.postEmployeeData()} width="320px" height="45px" />
                             </div>
                           
                             <div className="downloadBtn">
-                                <img width="230px" height="25px" onClick={() => this.downloadFile()} src={downloadSampleFile} />
+                                <img width="230px" height="25px" alt="" onClick={() => this.downloadFile()} src={downloadSampleFile} />
 
                             </div>
 

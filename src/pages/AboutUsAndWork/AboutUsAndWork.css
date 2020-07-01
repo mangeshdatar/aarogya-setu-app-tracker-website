@@ -16,6 +16,28 @@
 iframe{
     height: 238px;
     width: 377px;
+    border-radius: 13px;
+}
+
+@media (max-width: 750px) {
+    .videoContainer{
+        height: 224px;
+        width: 359px;
+    }
+    iframe{
+        height: 237px;
+        width: 358px;
+        border-radius: 13px;
+    }
+
+    .aboutUsContainer{
+        width: 359px;
+    }
+
+    .crossimg{
+        right: 4px;
+        position: fixed;
+    }
 }
 
 .aboutUsLable{

@@ -19,10 +19,19 @@
     margin: auto;
     margin-top: 52px;
     background-color: #ffffff;
-    width: 487px;
-    height: 385px;
-   
+    width: 30%;   
 }
+
+@media (max-width: 750px) {
+    .formcontainer {
+        width: 300px;
+    }
+
+    .appLabel {
+        padding: 0 3% 0 3%;
+    }
+}
+
 .invalidEmail {
     color: red;
 }
@@ -103,7 +112,7 @@
 .newUserLable{
 height: 30px;
   font-family: Avenir-Roman;
-  font-size: 22px;
+  font-size: 17px;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -111,6 +120,7 @@ height: 30px;
   letter-spacing: normal;
   text-align: center;
   color: #009fd5;
+  padding-top: 2%;
 }
 
 .signUpLabel{
@@ -128,6 +138,8 @@ height: 30px;
     position: relative;
     animation: myfirst 5s 1;
     animation-direction: alternate; 
+    padding-top: 8%;
+    padding-bottom: 8%;
 }
 .singUpBtn{
     width: 60%;
