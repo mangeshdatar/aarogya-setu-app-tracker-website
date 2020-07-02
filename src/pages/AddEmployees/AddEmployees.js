@@ -264,7 +264,7 @@ export default class AddEmployees extends Component {
             name: data[1],
             email: data[2],
             contactNo: data[3],
-            password: newID.key,
+            password: newID1.key,
             appAvailability: false,
             bluetoothStatus: false,
             locationStatus: false,
